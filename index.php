@@ -14,9 +14,9 @@
         case $me.'/admin' :
             require "views/admin/index.php";
             break;
-        // case $me.'/contact' :
-        //     require "views/contact.php";
-        //     break;
+        case $me.'/admin/istruktur' :
+            require "views/admin/instruktur.php";
+            break;
         default:
             http_response_code(404);
             echo "404";
