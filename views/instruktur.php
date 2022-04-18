@@ -1,3 +1,57 @@
+<?php
+
+include 'config1.php';
+
+error_reporting(0);
+
+session_start();
+
+if (isset($_SESSION['nama'])) {
+    header("Location: index.php");
+}
+
+if (isset($_POST['submit'])) {
+  $nama = $_POST['Nama'];
+  $email = $_POST['email'];
+  $telp = $_POST['telepon'];
+  $jabatan = $_POST['jabatan'];
+  $m1 = $_POST['materi 1'];
+  $m2 = $_POST['materi 2'];
+  $ktp = $_POST['no_ktp'];
+  $file = $_POST['file_ktp'];
+  $no_npwp = $_POST['no_npwp'];
+  $file_npwp = $_POST['file_npwp'];
+  $cv = $_POST['cv'];
+  $alamat = $_POST['alamat'];
+  $porto1 = $_POST['portofolio 1'];
+  $porto2 = $_POST['portofolio 2'];
+  if ($password == $cpassword) {
+    $sql = "SELECT * FROM tb_instruktur WHERE email='$email'";
+    $result = mysqli_query($connect, $sql);
+    if (!$result->num_rows > 0) {
+      $sql = "INSERT INTO tb_instruktur (username, password, nama_lengkap, nomor_telepon)
+          VALUES ('$username', '$pass', '$Nama', '$telp')";
+      $result = mysqli_query($connect, $sql);
+      if ($result) {
+        echo "<script>alert('Wow! User Registration Completed.')</script>";
+        $username = "";
+        $pass= "";
+        $Nama = "";
+        $telp = "";
+      } else {
+        echo "<script>alert('Woops! Something Wrong Went.')</script>";
+      }
+    } else {
+      echo "<script>alert('Woops! Email Already Exists.')</script>";
+    }
+
+  } else {
+    echo "<script>alert('Password Not Matched.')</script>";
+  }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
