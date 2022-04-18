@@ -3,11 +3,11 @@
 $server = "localhost";
 $user = "root";
 $pass = "";
-$database = "djarit";
+$db = "djarit";
 
-$connect = mysqli_connect($server, $user, $pass, $database);
+$connect = mysqli_connect($server, $user, $pass, $db);
 
-if (!$conn) {
+if (!$connect) {
     die("<script>alert('Connection Failed.')</script>");
 }
 
