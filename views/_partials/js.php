@@ -1,4 +1,5 @@
   <!-- Vendor JS Files -->
+  <script src="<?=SERVER?>assets/vendor/jquery/jquery.min.js"></script>
   <script src="<?=SERVER?>assets/vendor/purecounter/purecounter.js"></script>
   <script src="<?=SERVER?>assets/vendor/aos/aos.js"></script>
   <script src="<?=SERVER?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

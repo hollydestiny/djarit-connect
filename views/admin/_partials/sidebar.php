@@ -23,20 +23,20 @@
 
 <!-- Heading -->
 <div class="sidebar-heading">
-  Interface
+  Identity
 </div>
 
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-    <i class="fas fa-fw fa-cog"></i>
-    <span>Components</span>
+    <i class="fas fa-fw fa-address-card"></i>
+    <span>Instruktur</span>
   </a>
   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
-      <h6 class="collapse-header">Custom Components:</h6>
-      <a class="collapse-item" href="buttons.html">Buttons</a>
-      <a class="collapse-item" href="cards.html">Cards</a>
+      <h6 class="collapse-header">Menu:</h6>
+      <a class="collapse-item" href="buttons.html">List Instruktur</a>
+      <a class="collapse-item" href="<?=SERVER?>admin/instruktur/tambah">Tambah Instruktur</a>
     </div>
   </div>
 </li>
@@ -44,16 +44,14 @@
 <!-- Nav Item - Utilities Collapse Menu -->
 <li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-    <i class="fas fa-fw fa-wrench"></i>
-    <span>Utilities</span>
+    <i class="fas fa-fw fa-address-card"></i>
+    <span>Peserta</span>
   </a>
   <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
-      <h6 class="collapse-header">Custom Utilities:</h6>
-      <a class="collapse-item" href="utilities-color.html">Colors</a>
-      <a class="collapse-item" href="utilities-border.html">Borders</a>
-      <a class="collapse-item" href="utilities-animation.html">Animations</a>
-      <a class="collapse-item" href="utilities-other.html">Other</a>
+      <h6 class="collapse-header">Menu:</h6>
+      <a class="collapse-item" href="utilities-color.html">List Peserta</a>
+      <a class="collapse-item" href="utilities-border.html">Tambah Peserta</a>
     </div>
   </div>
 </li>
@@ -63,11 +61,24 @@
 
 <!-- Heading -->
 <div class="sidebar-heading">
-  Addons
+  Diklat
 </div>
+<li class="nav-item <?php echo $uri_segments[3] == 'diklat' ? 'active': '' ?>">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDiklat" aria-expanded="true" aria-controls="collapseDiklat">
+    <i class="fas fa-fw fa-address-card"></i>
+    <span>Jenis Diklat</span>
+  </a>
+  <div id="collapseDiklat" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+      <h6 class="collapse-header">Menu:</h6>
+      <a class="collapse-item" href="<?=SERVER?>admin/diklat/list">List Diklat</a>
+      <a class="collapse-item" href="<?=SERVER?>admin/diklat/tambah">Tambah Diklat</a>
+    </div>
+  </div>
+</li>
 
 <!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
+<!-- <li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
     <i class="fas fa-fw fa-folder"></i>
     <span>Pages</span>
@@ -84,21 +95,21 @@
       <a class="collapse-item" href="blank.html">Blank Page</a>
     </div>
   </div>
-</li>
+</li> -->
 
 <!-- Nav Item - Charts -->
-<li class="nav-item">
+<!-- <li class="nav-item">
   <a class="nav-link" href="charts.html">
     <i class="fas fa-fw fa-chart-area"></i>
     <span>Charts</span></a>
-</li>
+</li> -->
 
 <!-- Nav Item - Tables -->
-<li class="nav-item">
+<!-- <li class="nav-item">
   <a class="nav-link" href="tables.html">
     <i class="fas fa-fw fa-table"></i>
     <span>Tables</span></a>
-</li>
+</li> -->
 
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
