@@ -43,6 +43,13 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
+                                    <?php 
+                                      if(isset($_GET['feedback'])){
+                                      $status = $_GET['feedback'];
+                                      if($status == 'gagal'){
+                                          echo "<div class='alert alert-danger' role='alert'>Username atau Password anda salah..</div>";
+                                      }}
+                                      ?>
                                     <form class="user" action="<?=SERVER?>controller/auth.php" method="post">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"

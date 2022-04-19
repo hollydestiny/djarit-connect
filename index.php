@@ -45,6 +45,9 @@
             include "config/koneksi.php";
             require "views/login.php";
             break;
+        case $me.'/login?feedback=gagal' :
+            require "views/login.php";
+            break;
         default:
             http_response_code(404);
             echo "404";
