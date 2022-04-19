@@ -14,6 +14,9 @@
         case $me.'/admin' :
             require "views/admin/index.php";
             break;
+        case $me.'/instruktur' :
+            require "views/instruktur/index.php";
+            break;
         case $me.'/admin/instruktur/tambah' :
             require "views/admin/instruktur_tambah_form.php";
             break;
@@ -38,11 +41,17 @@
             include "config/koneksi.php";
             require "views/admin/diklat_list.php";
             break;
+        case $me.'/login' :
+            include "config/koneksi.php";
+            require "views/login.php";
+            break;
         default:
             http_response_code(404);
             echo "404";
             break;
     }
+    
+    // echo $uri_segments[2];
     
     // header("location: ". SERVER . "views/index.php");
     // exit();
