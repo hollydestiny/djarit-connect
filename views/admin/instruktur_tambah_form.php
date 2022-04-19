@@ -26,96 +26,87 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <div class="card mb-3">
-            <div class="card-header"> <a href="<?=SERVER?>admin/instruktur/list"><i class="fas fa-arrow-left"></i> Kembali</a> </div>
+            <div class="card-header"> <a href="https://sip-pkl.monlab.site/index.php/admin/siswa/"><i class="fas fa-arrow-left"></i> Kembali</a> </div>
             <div class="card-body">
-              <?php 
-              if(isset($_GET['feedback'])){
-              $status = $_GET['feedback'];
-              if($status == 1){
-                  echo "<div class='alert alert-success' role='alert'>Berhasil Disimpan</div>";
-               }else if($status == 2){
-                  echo "<div class='alert alert-danger' role='alert'>Gagal Disimpan</div>";
-               }
-              }
-              ?>
-              <form action="<?=SERVER?>controller/admin/simpan_data_instruktur.php" method="post" enctype="multipart/form-data">
+              <form action="" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                  <label for="nama">Nama*</label>
-                  <input class="form-control " type="text" name="nama" placeholder="Nama Instruktur" reqired/>
+                  <label for="id">Nama*</label>
+                  <input class="form-control " type="text" name="nama" placeholder="Nama" />
                   <div class="invalid-feedback"> </div>
                 </div>
                 <div class="form-group">
-                  <label for="email">Email*</label>
-                  <input class="form-control " type="email" name="email" placeholder="Email" required/>
+                  <label for="nama">Email*</label>
+                  <input class="form-control " type="Email" name="email" placeholder="Email" />
                   <div class="invalid-feedback"> </div>
                 </div>
                 <div class="form-group">
-                  <label for="telepon">Nomor Telepon*</label>
-                  <input class="form-control " type="number" name="telepon" placeholder="08523456789" required />
-                  <div class="invalid-feedback"> </div>
-                </div>
-                <div class="form-group">
-                  <label for="jabatan">Jabatan*</label>
-                  <select name="jabatan" class="form-control " id="jabatan" required>>
+                  <label for="nama">Jabatan*</label>
+                  <select name="jabatan" class="form-control " id="jabatan">
                     <option value="">-PILIH-</option>
-                    <option value="instruktur">Instruktur</option>
-                    <option value="assitant">Assistant Instruktur</option>
-                  </select>
+                    <option value="613720ffd17d3">Instruktur</option>
+                    <option value="6137227164874">Asisten Instruktur</option>
+                    <div class="invalid-feedback"> </div>
+                </div>
+                <div class="form-group">
+                  <label for="nama">Materi 1*</label>
+                  <input class="form-control " type="text" name="materi 1" placeholder="Materi 1" />
                   <div class="invalid-feedback"> </div>
                 </div>
                 <div class="form-group">
-                  <label for="diklat">Instruktur Diklat*</label>
-                  <select name="diklat" class="form-control " id="jabatan" required>>
-                    <option value="">-PILIH-</option>
-                    <?php
-                    $query = mysqli_query($koneksi, 'SELECT * FROM tb_diklat');
-                    while ($data = mysqli_fetch_array($query)) {
-                    ?>
-                    <option value="<?=$data['id']?>"><?=$data['nama']?></option>
-                  <?php }?>
-                  </select>
+                  <label for="nama">Materi 2*</label>
+                  <input class="form-control " type="text" name="materi 2" placeholder="Materi 2" />
                   <div class="invalid-feedback"> </div>
                 </div>
                 <div class="form-group">
-                  <label for="alamat">Alamat*</label>
-                  <input class="form-control " type="text" name="alamat" placeholder="Alamat" required />
+                  <label for="nama">Nomor KTP*</label>
+                  <input class="form-control " type="text" name="no_ktp" placeholder="Nomor KTP" />
                   <div class="invalid-feedback"> </div>
                 </div>
                 <div class="form-group">
-                  <label for="no_ktp">Nomor KTP*</label>
-                  <input class="form-control " type="number" name="no_ktp" placeholder="Nomor KTP" required />
+                  <label for="foto">File KTP</label>
+                  <input class="form-control-file " type="file" name="file_ktp" />
+                  <div class="invalid-feedback"> </div>
+                </div>
+                <input class="btn btn-success" type="submit" name="btn" value="Save" />
+                <div class="form-group">
+                  <label for="nama">Nomor NPWP*</label>
+                  <input class="form-control " type="text" name="no_npwp" placeholder="Nomor NPWP" />
+                  <div class="invalid-feedback"> </div>
+                <div/>
+                <div class="form-group">
+                  <label for="foto">File NPWP</label>
+                  <input class="form-control-file " type="file" name="file_npwp" />
+                  <div class="invalid-feedback"> </div>
+                </div>
+                <input class="btn btn-success" type="submit" name="btn" value="Save" />
+                <div class="form-group">
+                  <label for="nama">CV*</label>
+                  <input class="form-control " type="text" name="cv" placeholder="CV" />
                   <div class="invalid-feedback"> </div>
                 </div>
                 <div class="form-group">
-                  <label for="no_npwp">Nomor NPWP*</label>
-                  <input class="form-control " type="number" name="no_npwp" placeholder="Nomor NPWP" required />
+                  <label for="nama">Alamat*</label>
+                  <input class="form-control " type="text" name="alamat" placeholder="Alamat" />
                   <div class="invalid-feedback"> </div>
                 </div>
                 <div class="form-group">
-                  <label for="cv">CV*</label>
-                  <textarea class="form-control" type="text" name="cv" placeholder="CV anda" required></textarea> 
+                  <label for="nama">Portofolio 1*</label>
+                  <input class="form-control " type="text" name="portofolio 1" placeholder="Portofolio 1" />
                   <div class="invalid-feedback"> </div>
                 </div>
-
                 <div class="form-group">
-                  <label for="ktp">File KTP</label>
-                  <input class="form-control-file " type="file" name="ktp" />
+                  <label for="nama">Portofolio 2*</label>
+                  <input class="form-control " type="text" name="portofolio 2" placeholder="Portofolio 2" />
                   <div class="invalid-feedback"> </div>
                 </div>
-                
-                <div class="form-group">
-                  <label for="npwp">File NPWP</label>
-                  <input class="form-control-file " type="file" name="npwp" />
-                  <div class="invalid-feedback"> </div>
-                </div>
-                                
                 <div class="form-group">
                   <label for="foto">Foto</label>
                   <input class="form-control-file " type="file" name="foto" />
                   <div class="invalid-feedback"> </div>
                 </div>
-                <input class="btn btn-success" type="submit" name="btn" value="Save" /> </form>
-              </div>
+                <input class="btn btn-success" type="submit" name="btn" value="Save" />
+                <!-- <input type="hidden" name="status" value="0" />
+                                      <input type="hidden" name="nilai" value="0" /> -->
             <div class="card-footer small text-muted"> * Wajib diisi </div>
           </div>
         </div>
