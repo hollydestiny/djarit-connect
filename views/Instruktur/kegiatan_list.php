@@ -47,11 +47,8 @@
                     <tr>
                       <th width="50px">No</th>
                       <th>Nama Diklat</th>
-                      <th>Jumlah Peserta</th>
-                      <th>Angkatan</th>
-                      <th>Status</th>
-                      <th>Mulai</th>
-                      <th>Selesai</th>
+                      <th width="600px">Kegiatan</th>
+                      <th>Tanggal</th>
                       <th width="250px">Aksi</th>
                     </tr>
                   </thead>
@@ -59,18 +56,15 @@
                     <tr>
                       <th>No</th>
                       <th>Nama Diklat</th>
-                      <th>Jumlah Peserta</th>
-                      <th>Angkatan</th>
-                      <th>Status</th>
-                      <th>Mulai</th>
-                      <th>Selesai</th>
+                      <th>Kegiatan</th>
+                      <th>Tanggal</th>
                       <th>Aksi</th>
                     </tr>
                   </tfoot>
                   <tbody>
                     <?php
                     $no = 1;
-                    $query = mysqli_query($koneksi, 'SELECT * FROM tb_diklat');
+                    $query = mysqli_query($koneksi, 'SELECT * FROM tb_kegiatan');
                     while ($data = mysqli_fetch_array($query)) {
                     ?>
                     <tr>
@@ -78,23 +72,15 @@
                         <?php echo $no++ ?>
                       </td>
                       <td>
-                        <?php echo $data['nama'] ?>
+                        <?php echo $data['diklat'] ?>
                       </td>
                       <td>
-                        <?php echo $data['jumlah_peserta'] ?>
+                        <?php echo $data['kegiatan'] ?>
                       </td>
                       <td>
-                        <?php echo $data['angkatan'] ?>
+                        <?php echo $data['tanggal'] ?>
                       </td>
-                      <td>
-                        <?php if($data['status']==0){echo "Pendaftaran";}else if($data['status']==1){echo "Mulai";}else if($data['status']==2){echo "Selesai";} ?>
-                      </td>
-                      <td>
-                        <?php echo $data['mulai'] ?>
-                      </td>
-                      <td>
-                        <?php echo $data['selesai'] ?>
-                      </td>
+                      
                       <td width="200px">
                          <a href="<?=SERVER.'views/admin/diklat_edit_form.php?data='.$data['id_diklat']?>"
                          class="btn btn-small"><i class="fas fa-edit"></i> Perbarui</a>

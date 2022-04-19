@@ -48,6 +48,10 @@
         case $me.'/login?feedback=gagal' :
             require "views/login.php";
             break;
+        case $me.'/instruktur/kegiatan/list' :
+            include "config/koneksi.php";
+            require "views/instruktur/kegiatan_list.php";
+            break;
         default:
             http_response_code(404);
             echo "404";
