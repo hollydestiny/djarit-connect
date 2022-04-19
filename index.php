@@ -38,6 +38,16 @@
             include "config/koneksi.php";
             require "views/admin/diklat_list.php";
             break;
+        case $me.'/admin/peserta/tambah' :
+            include "config/koneksi.php";
+            require "views/admin/peserta_tambah_form.php";
+            break;
+        case $me.'/admin/peserta/tambah?feedback=1' :
+            require "views/admin/peserta_tambah_form.php";
+            break;
+        case $me.'/admin/peserta/tambah?feedback=2' :
+            require "views/admin/peserta_tambah_form.php";
+            break;
         default:
             http_response_code(404);
             echo "404";
