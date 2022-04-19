@@ -146,7 +146,7 @@
                 <div class="form-group">
                   <label for="status">Status Diklat*</label>
                   <select name="status" class="form-control " id="status">
-                    <option value="<?=$data['status']?>"><?=$data['status']?></option>
+                    <option value="<?=$data['status']?>"><?php if($data['status']==0){echo "Pendaftaran";}else if($data['status']==1){echo "Mulai";}else if($data['status']==2){echo "Selesai";} ?></option>
                     <option value="0">Pendaftaran</option>
                     <option value="1">Mulai</option>
                     <option value="2">Selesai</option>
