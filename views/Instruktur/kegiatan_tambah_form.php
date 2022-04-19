@@ -26,7 +26,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <div class="card mb-3">
-            <div class="card-header"> <a href="<?=SERVER?>admin/diklat/list"><i class="fas fa-arrow-left"></i> Kembali</a> </div>
+            <div class="card-header"> <a href="<?=SERVER?>instruktur/kegiatan/list"><i class="fas fa-arrow-left"></i> Kembali</a> </div>
             <div class="card-body">
               <?php 
               if(isset($_GET['feedback'])){
@@ -38,39 +38,40 @@
                }
               }
               ?>
-              <form action="<?=SERVER?>controller/admin/simpan_data_diklat.php" method="post" enctype="multipart/form-data">
-                <div class="form-group">
+              <form action="<?=SERVER?>controller/instruktur/simpan_data_kegiatan.php" method="post" enctype="multipart/form-data">
+                 <div class="form-group">
                   <label for="diklat">Nama Diklat*</label>
-                  <input class="form-control " type="text" name="diklat" placeholder="Nama Diklat" required="required" />
-                  <div class="invalid-feedback"> </div>
-                </div>
-                <div class="form-group">
-                  <label for="angkatan">Angkatan*</label>
-                  <input class="form-control " type="number" name="angkatan" placeholder="Angkatan Diklat" required="required" />
-                  <div class="invalid-feedback"> </div>
-                </div>
-                <div class="form-group">
-                  <label for="status">Status Diklat*</label>
-                  <select name="status" class="form-control " id="status">
+                  <select name="diklat" class="form-control " id="diklat">
                     <option value="">-PILIH-</option>
-                    <option value="0">Pendaftaran</option>
-                    <option value="1">Mulai</option>
-                    <option value="2">Selesai</option>
+                    <?php
+                      $id = $_SESSION['id'];
+                      $query = mysqli_query($koneksi, 
+                      "SELECT 
+                        tb_diklat.nama,
+                        tb_diklat.id_diklat
+                      FROM tb_diklat
+                      LEFT JOIN tb_instruktur ON tb_diklat.id_diklat=tb_instruktur.materi_1
+                      OR tb_diklat.id_diklat=tb_instruktur.materi_2
+                      WHERE tb_instruktur.id_instruktur='$id'");
+                      while ($data = mysqli_fetch_array($query)) {
+                    ?>
+                    <option value="<?=$data['nama']?>"><?=$data['nama']?></option>
+                    <?php }?>
                   </select>
+                  <div class="invalid-feedback"> </div>
+                </div>
+                <div class="form-group">
+                  <label for="kegiatan">Kegiatan*</label>
+                  <textarea class="form-control " type="text" name="kegiatan" placeholder="Kegiatan Diklat" required="required" /></textarea>
                   <div class="invalid-feedback"> </div>
                 </div>
                 <!-- <input type="hidden" name="status" value="0" />
                 <input type="hidden" name="nilai" value="0" /> -->
-                <div class="form-group">
-                  <label for="mulai">Tgl Mulai Diklat</label>
-                  <input class="form-control " type="date" name="mulai" />
-                  <div class="invalid-feedback"> </div>
-                </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="selesai">Tgl Selesai Diklat</label>
                   <input class="form-control " type="date" name="selesai" />
                   <div class="invalid-feedback"> </div>
-                </div>
+                </div> -->
                 <input class="btn btn-success" type="submit" name="btn" value="Save" /> </form>
             </div>
             <div class="card-footer small text-muted"> * Wajib diisi </div>

@@ -15,7 +15,7 @@
     <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?=SERVER?>instruktur">
       <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-laugh-wink"></i>
       </div>
@@ -26,8 +26,8 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-      <a class="nav-link" href="index.html">
+    <li class="nav-item">
+      <a class="nav-link" href="<?=SERVER?>instruktur">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
     </li>
@@ -37,56 +37,20 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-      Identity
+      Log
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
+    <li class="nav-item active">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-address-card"></i>
-        <span>Instruktur</span>
+        <i class="fas fa-fw fa-list"></i>
+        <span>Kegiatan Diklat</span>
       </a>
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Menu:</h6>
-          <a class="collapse-item" href="buttons.html">List Instruktur</a>
-          <a class="collapse-item" href="<?=SERVER?>admin/instruktur/tambah">Tambah Instruktur</a>
-        </div>
-      </div>
-    </li>
-
-    <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-        <i class="fas fa-fw fa-address-card"></i>
-        <span>Peserta</span>
-      </a>
-      <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-          <h6 class="collapse-header">Menu:</h6>
-          <a class="collapse-item" href="utilities-color.html">List Peserta</a>
-          <a class="collapse-item" href="utilities-border.html">Tambah Peserta</a>
-        </div>
-      </div>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-      Diklat
-    </div>
-    <li class="nav-item active">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDiklat" aria-expanded="true" aria-controls="collapseDiklat">
-        <i class="fas fa-fw fa-address-card"></i>
-        <span>Jenis Diklat</span>
-      </a>
-      <div id="collapseDiklat" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-          <h6 class="collapse-header">Menu:</h6>
-          <a class="collapse-item" href="<?=SERVER?>admin/diklat/list">List Diklat</a>
-          <a class="collapse-item" href="<?=SERVER?>admin/diklat/tambah">Tambah Diklat</a>
+          <a class="collapse-item" href="<?=SERVER?>instruktur/kegiatan/list">List Log Kegiatan</a>
+          <a class="collapse-item" href="<?=SERVER?>instruktur/kegiatan/tambah">Tambah Log Kegiatan</a>
         </div>
       </div>
     </li>
@@ -128,40 +92,37 @@
               }
               if(isset($_GET['data'])){
               $id = $_GET['data'];
-              $query = mysqli_query($koneksi, "SELECT * FROM tb_diklat WHERE id_diklat='$id'");
+              $query = mysqli_query($koneksi, "SELECT * FROM tb_kegiatan WHERE id_kegiatan='$id'");
               while ($data = mysqli_fetch_array($query)) {
               ?>
-              <form action="<?=SERVER?>controller/admin/edit_diklat.php" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="id" value="<?=$data['id_diklat']?>" />
+              <form action="<?=SERVER?>controller/instruktur/edit_kegiatan.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="<?=$data['id_kegiatan']?>" />
                 <div class="form-group">
                   <label for="diklat">Nama Diklat*</label>
-                  <input class="form-control " type="text" name="diklat" placeholder="Nama Diklat" value="<?=$data['nama']?>" required="required" />
-                  <div class="invalid-feedback"> </div>
-                </div>
-                <div class="form-group">
-                  <label for="angkatan">Angkatan*</label>
-                  <input class="form-control " type="number" name="angkatan" placeholder="Angkatan Diklat" value="<?=$data['angkatan']?>" required="required" />
-                  <div class="invalid-feedback"> </div>
-                </div>
-                <div class="form-group">
-                  <label for="status">Status Diklat*</label>
-                  <select name="status" class="form-control " id="status">
-                    <option value="<?=$data['status']?>"><?php if($data['status']==0){echo "Pendaftaran";}else if($data['status']==1){echo "Mulai";}else if($data['status']==2){echo "Selesai";} ?></option>
-                    <option value="0">Pendaftaran</option>
-                    <option value="1">Mulai</option>
-                    <option value="2">Selesai</option>
+                  <select name="diklat" class="form-control " id="diklat">
+                    <option value="<?=$data['diklat']?>"><?=$data['diklat']?></option>
+                    <?php
+                      $id = $_SESSION['id'];
+                      $diklat = $data['diklat'];
+                      $query = mysqli_query($koneksi, 
+                      "SELECT 
+                        tb_diklat.nama,
+                        tb_diklat.id_diklat
+                      FROM tb_diklat
+                      LEFT JOIN tb_instruktur ON tb_diklat.id_diklat=tb_instruktur.materi_1
+                      OR tb_diklat.id_diklat=tb_instruktur.materi_2
+                      WHERE tb_instruktur.id_instruktur='$id' AND tb_diklat.nama!='$diklat'");
+                      while ($data1 = mysqli_fetch_array($query)) {
+                    ?>
+                    <option value="<?=$data1['nama']?>"><?=$data1['nama']?></option>
+                    <?php }?>
                   </select>
                   <div class="invalid-feedback"> </div>
                 </div>
-                <input type="hidden" name="jumlah_peserta" value="<?=$data['jumlah_peserta']?>" />
+                <input type="hidden" name="tanggal" value="<?=$data['tanggal']?>" />
                 <div class="form-group">
-                  <label for="mulai">Tgl Mulai Diklat</label>
-                  <input class="form-control " type="date" value="<?=$data['mulai']?>" name="mulai" />
-                  <div class="invalid-feedback"> </div>
-                </div>
-                <div class="form-group">
-                  <label for="selesai">Tgl Selesai Diklat</label>
-                  <input class="form-control " type="date" value="<?=$data['selesai']?>" name="selesai" />
+                  <label for="kegiatan">Kegiatan*</label>
+                  <textarea class="form-control " type="text" name="kegiatan" placeholder="Kegiatan Diklat" required="required" /><?= $data['kegiatan']?></textarea>
                   <div class="invalid-feedback"> </div>
                 </div>
                 <input class="btn btn-success" type="submit" name="btn" value="Save" /> 

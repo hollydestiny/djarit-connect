@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?=SERVER?>instruktur">
   <div class="sidebar-brand-icon rotate-n-15">
     <i class="fas fa-laugh-wink"></i>
   </div>
@@ -12,8 +12,8 @@
 <hr class="sidebar-divider my-0">
 
 <!-- Nav Item - Dashboard -->
-<li class="nav-item active">
-  <a class="nav-link" href="index.html">
+<li class="nav-item <?php echo $uri_segments[3] == '' ? 'active': '' ?>">
+  <a class="nav-link" href="<?=SERVER?>instruktur">
     <i class="fas fa-fw fa-tachometer-alt"></i>
     <span>Dashboard</span></a>
 </li>
@@ -27,7 +27,7 @@
 </div>
 
 <!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
+<li class="nav-item <?php echo $uri_segments[3] == 'kegiatan' ? 'active': '' ?>">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
     <i class="fas fa-fw fa-list"></i>
     <span>Kegiatan Diklat</span>
@@ -36,7 +36,7 @@
     <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">Menu:</h6>
       <a class="collapse-item" href="<?=SERVER?>instruktur/kegiatan/list">List Log Kegiatan</a>
-      <a class="collapse-item" href="<?=SERVER?>admin/instruktur/tambah">Tambah Log Kegiatan</a>
+      <a class="collapse-item" href="<?=SERVER?>instruktur/kegiatan/tambah">Tambah Log Kegiatan</a>
     </div>
   </div>
 </li>

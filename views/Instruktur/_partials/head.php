@@ -15,9 +15,9 @@ if (!isset($_SESSION['peran'])=='instruktur') {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Dashboard</title>
+  <title>Instruktur - Dashboard</title>
 
-  <link href="<?=SERVER?>assets/img/logo.svg" rel="icon">
+  <link type="image/x-icon" href="<?=SERVER?>assets/img/logo.svg" rel="icon">
 
   <!-- Custom fonts for this template-->
   <link href="<?=SERVER?>assets/vendor/fontawesome/css/all.min.css" rel="stylesheet" type="text/css">

@@ -31,6 +31,7 @@ if($cek > 0){
 		// buat session login dan username
 		$_SESSION['username'] = $username;
 		$_SESSION['peran'] = "admin";
+		$_SESSION['id'] = $data['id_user'];
 		// alihkan ke halaman dashboard admin
 		header('location: '.SERVER.'admin');
 
@@ -39,6 +40,7 @@ if($cek > 0){
 		// buat session login dan username
 		$_SESSION['username'] = $username;
 		$_SESSION['peran'] = "instruktur";
+		$_SESSION['id'] = $data['id_user'];
 		// alihkan ke halaman dashboard pegawai
 		header('location: '.SERVER.'instruktur');
 
@@ -47,6 +49,7 @@ if($cek > 0){
 		// buat session login dan username
 		$_SESSION['username'] = $username;
 		$_SESSION['peran'] = "asistent";
+		$_SESSION['id'] = $data['id_user'];
 		// alihkan ke halaman dashboard pengurus
 		header('location: '.SERVER.'instruktur');
 
