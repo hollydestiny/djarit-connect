@@ -39,32 +39,31 @@
               }
               ?>
               <form action="<?=SERVER?>controller/instruktur/simpan_data_kegiatan.php" method="post" enctype="multipart/form-data">
-                 <div class="form-group">
-                  <label for="diklat">Nama Diklat*</label>
-                  <select name="diklat" class="form-control " id="diklat">
-                    <option value="">-PILIH-</option>
-                    <?php
+                  <?php
                       $id = $_SESSION['id'];
                       $query = mysqli_query($koneksi, 
                       "SELECT 
                         tb_diklat.nama,
-                        tb_diklat.id_diklat
+                        tb_diklat.id_diklat,
+                        tb_instruktur.nama AS instruktur
                       FROM tb_diklat
-                      LEFT JOIN tb_instruktur ON tb_diklat.id_diklat=tb_instruktur.materi_1
-                      OR tb_diklat.id_diklat=tb_instruktur.materi_2
+                      LEFT JOIN tb_instruktur ON tb_diklat.id_diklat=tb_instruktur.diklat
                       WHERE tb_instruktur.id_instruktur='$id'");
                       while ($data = mysqli_fetch_array($query)) {
-                    ?>
-                    <option value="<?=$data['nama']?>"><?=$data['nama']?></option>
-                    <?php }?>
-                  </select>
-                  <div class="invalid-feedback"> </div>
-                </div>
+                      ?>
+                      <div class="form-group">
+                        <label for="diklat">Diklat</label>
+                        <input class="form-control " type="text" id="diklat" name="diklat" placeholder="Diklat" value="<?= $data['nama']?>" readonly />
+                        <div class="invalid-feedback"> </div>
+                      </div>
+                     <?php }?>
+
                 <div class="form-group">
                   <label for="kegiatan">Kegiatan*</label>
                   <textarea class="form-control " type="text" name="kegiatan" placeholder="Kegiatan Diklat" required="required" /></textarea>
                   <div class="invalid-feedback"> </div>
                 </div>
+                <input type="hidden" name="instruktur" value="<?=$_SESSION['id']?>" />
                 <!-- <input type="hidden" name="status" value="0" />
                 <input type="hidden" name="nilai" value="0" /> -->
                 <!-- <div class="form-group">

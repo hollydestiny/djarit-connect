@@ -28,7 +28,7 @@
            <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Data Tabel Kegiatan</h6>
             </div>
             <div class="card-body">
               <?php 
@@ -47,6 +47,7 @@
                     <tr>
                       <th width="50px">No</th>
                       <th>Nama Diklat</th>
+                      <th>Instruktur</th>
                       <th width="600px">Kegiatan</th>
                       <th>Tanggal</th>
                       <th width="250px">Aksi</th>
@@ -56,7 +57,16 @@
                   <tbody>
                     <?php
                     $no = 1;
-                    $query = mysqli_query($koneksi, 'SELECT * FROM tb_kegiatan');
+                    // $query = mysqli_query($koneksi, 'SELECT * FROM tb_kegiatan');
+                    $query = mysqli_query($koneksi, 
+                      "SELECT 
+                        tb_kegiatan.id_kegiatan,
+                        tb_kegiatan.diklat AS diklat,
+                        tb_kegiatan.kegiatan AS kegiatan,
+                        tb_kegiatan.tanggal AS tanggal,
+                        tb_instruktur.nama AS instruktur
+                      FROM tb_kegiatan
+                      LEFT JOIN tb_instruktur ON tb_kegiatan.id_instruktur=tb_instruktur.id_instruktur");
                     while ($data = mysqli_fetch_array($query)) {
                     ?>
                     <tr>
@@ -67,12 +77,15 @@
                         <?php echo $data['diklat'] ?>
                       </td>
                       <td>
+                        <?php echo $data['instruktur'] ?>
+                      </td>
+                      <td>
                         <?php echo $data['kegiatan'] ?>
                       </td>
                       <td>
                         <?php echo $data['tanggal'] ?>
                       </td>
-                      
+                                            
                       <td width="200px">
                          <a href="<?=SERVER.'views/instruktur/kegiatan_edit_form.php?data='.$data['id_kegiatan']?>"
                          class="btn btn-small"><i class="fas fa-edit"></i> Perbarui</a>

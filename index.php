@@ -67,9 +67,11 @@
             require "views/instruktur/kegiatan_tambah_form.php";
             break;
         case $me.'/instruktur/kegiatan/tambah?feedback=1' :
+            include "config/koneksi.php";
             require "views/instruktur/kegiatan_tambah_form.php";
             break;
         case $me.'/instruktur/kegiatan/tambah?feedback=2' :
+            include "config/koneksi.php";
             require "views/instruktur/kegiatan_tambah_form.php";
             break;
         default:

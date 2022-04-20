@@ -98,31 +98,15 @@
               <form action="<?=SERVER?>controller/instruktur/edit_kegiatan.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?=$data['id_kegiatan']?>" />
                 <div class="form-group">
-                  <label for="diklat">Nama Diklat*</label>
-                  <select name="diklat" class="form-control " id="diklat">
-                    <option value="<?=$data['diklat']?>"><?=$data['diklat']?></option>
-                    <?php
-                      $id = $_SESSION['id'];
-                      $diklat = $data['diklat'];
-                      $query = mysqli_query($koneksi, 
-                      "SELECT 
-                        tb_diklat.nama,
-                        tb_diklat.id_diklat
-                      FROM tb_diklat
-                      LEFT JOIN tb_instruktur ON tb_diklat.id_diklat=tb_instruktur.materi_1
-                      OR tb_diklat.id_diklat=tb_instruktur.materi_2
-                      WHERE tb_instruktur.id_instruktur='$id' AND tb_diklat.nama!='$diklat'");
-                      while ($data1 = mysqli_fetch_array($query)) {
-                    ?>
-                    <option value="<?=$data1['nama']?>"><?=$data1['nama']?></option>
-                    <?php }?>
-                  </select>
+                  <label for="diklat">Diklat*</label>
+                  <input class="form-control " type="text" id="diklat" name="diklat" placeholder="Diklat" value="<?= $data['diklat']?>" readonly />
                   <div class="invalid-feedback"> </div>
                 </div>
+                <input type="hidden" id="instruktur" name="instruktur" value="<?= $data['id_instruktur']?>" />
                 <input type="hidden" name="tanggal" value="<?=$data['tanggal']?>" />
                 <div class="form-group">
                   <label for="kegiatan">Kegiatan*</label>
-                  <textarea class="form-control " type="text" name="kegiatan" placeholder="Kegiatan Diklat" required="required" /><?= $data['kegiatan']?></textarea>
+                  <textarea class="form-control " type="text" id="kegiatan" name="kegiatan" placeholder="Kegiatan Diklat" required="required" /><?= $data['kegiatan']?></textarea>
                   <div class="invalid-feedback"> </div>
                 </div>
                 <input class="btn btn-success" type="submit" name="btn" value="Save" /> 
