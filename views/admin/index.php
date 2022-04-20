@@ -142,14 +142,7 @@
                       <th width="200px">Tanggal</th>
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                      <th width="50px">No.</th>
-                      <th>Jenis Diklat</th>
-                      <th width="800px">Log Kegiatan</th>
-                      <th width="200px">Tanggal</th>
-                    </tr>
-                  </tfoot>
+                  
                   <tbody>
                     <?php
                     $no = 1;

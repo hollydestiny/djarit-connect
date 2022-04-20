@@ -13,7 +13,7 @@ $id=$_POST["id"];
 $jumlah=$_POST["jumlah_peserta"];
  
 //Query input menginput data kedalam tabel barang
-  $query="UPDATE tb_diklat SET id_diklat='$id',nama='$diklat',jumlah_peserta='$jumlah',angkatan='$angkatan',status='$status',mulai='$mulai',selesai='$selesai' WHERE id_diklat='$id'";
+  $query="UPDATE tb_diklat SET id_diklat='$id',nama='$diklat',jumlah_peserta='$jumlah',angkatan='$angkatan',status='$status',tgl_mulai='$mulai',tgl_selesai='$selesai' WHERE id_diklat='$id'";
 
 //Mengeksekusi/menjalankan query diatas	
   $hasil=mysqli_query($koneksi,$query);

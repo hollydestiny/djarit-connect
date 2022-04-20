@@ -52,15 +52,7 @@
                       <th width="250px">Aksi</th>
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                      <th>No</th>
-                      <th>Nama Diklat</th>
-                      <th>Kegiatan</th>
-                      <th>Tanggal</th>
-                      <th>Aksi</th>
-                    </tr>
-                  </tfoot>
+                  
                   <tbody>
                     <?php
                     $no = 1;

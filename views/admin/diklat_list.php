@@ -55,18 +55,7 @@
                       <th width="250px">Aksi</th>
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                      <th>No</th>
-                      <th>Nama Diklat</th>
-                      <th>Jumlah Peserta</th>
-                      <th>Angkatan</th>
-                      <th>Status</th>
-                      <th>Mulai</th>
-                      <th>Selesai</th>
-                      <th>Aksi</th>
-                    </tr>
-                  </tfoot>
+                  
                   <tbody>
                     <?php
                     $no = 1;
@@ -90,10 +79,10 @@
                         <?php if($data['status']==0){echo "Pendaftaran";}else if($data['status']==1){echo "Mulai";}else if($data['status']==2){echo "Selesai";} ?>
                       </td>
                       <td>
-                        <?php echo $data['mulai'] ?>
+                        <?php echo $data['tgl_mulai'] ?>
                       </td>
                       <td>
-                        <?php echo $data['selesai'] ?>
+                        <?php echo $data['tgl_selesai'] ?>
                       </td>
                       <td width="200px">
                          <a href="<?=SERVER.'views/admin/diklat_edit_form.php?data='.$data['id_diklat']?>"

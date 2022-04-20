@@ -17,6 +17,7 @@
             require "views/admin/index.php";
             break;
         case $me.'/instruktur' :
+            include "config/koneksi.php";
             require "views/instruktur/index.php";
             break;
         case $me.'/admin/instruktur/tambah' :

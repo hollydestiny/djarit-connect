@@ -9,11 +9,10 @@ $angkatan=$_POST["angkatan"];
 $status=$_POST["status"];
 $mulai=$_POST["mulai"];
 $selesai=$_POST["selesai"];
-$id=uniqid();
 $jumlah=0;
  
 //Query input menginput data kedalam tabel barang
-  $query="INSERT INTO tb_diklat(id_diklat,nama,jumlah_peserta,angkatan,status,mulai,selesai) VALUES('$id','$diklat','$jumlah','$angkatan','$status','$mulai','$selesai')";
+  $query="INSERT INTO tb_diklat(nama,jumlah_peserta,angkatan,status,tgl_mulai,tgl_selesai) VALUES('$diklat','$jumlah','$angkatan','$status','$mulai','$selesai')";
 
 //Mengeksekusi/menjalankan query diatas	
   $hasil=mysqli_query($koneksi,$query);

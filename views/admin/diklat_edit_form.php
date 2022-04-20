@@ -156,12 +156,12 @@
                 <input type="hidden" name="jumlah_peserta" value="<?=$data['jumlah_peserta']?>" />
                 <div class="form-group">
                   <label for="mulai">Tgl Mulai Diklat</label>
-                  <input class="form-control " type="date" value="<?=$data['mulai']?>" name="mulai" />
+                  <input class="form-control " type="date" value="<?=$data['tgl_mulai']?>" name="mulai" />
                   <div class="invalid-feedback"> </div>
                 </div>
                 <div class="form-group">
                   <label for="selesai">Tgl Selesai Diklat</label>
-                  <input class="form-control " type="date" value="<?=$data['selesai']?>" name="selesai" />
+                  <input class="form-control " type="date" value="<?=$data['tgl_selesai']?>" name="selesai" />
                   <div class="invalid-feedback"> </div>
                 </div>
                 <input class="btn btn-success" type="submit" name="btn" value="Save" /> 
