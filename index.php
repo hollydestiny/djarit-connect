@@ -9,9 +9,11 @@
 
     switch ($request) {
         case $me.'/' :
+            include "config/koneksi.php";
             require "views/index.php";
             break;
         case $me.'/admin' :
+            include "config/koneksi.php";
             require "views/admin/index.php";
             break;
         case $me.'/instruktur' :
