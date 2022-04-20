@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2022 at 05:49 AM
+-- Generation Time: Apr 20, 2022 at 05:56 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.28
 
@@ -33,8 +33,8 @@ CREATE TABLE `tb_diklat` (
   `jumlah_peserta` int(3) NOT NULL,
   `angkatan` int(3) NOT NULL,
   `status` int(3) NOT NULL,
-  `mulai` date NOT NULL,
-  `selesai` date NOT NULL
+  `tgl_mulai` date NOT NULL,
+  `tgl_selesai` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
