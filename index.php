@@ -74,6 +74,34 @@
             include "config/koneksi.php";
             require "views/instruktur/kegiatan_tambah_form.php";
             break;
+        case $me.'/admin/user/list' :
+            include "config/koneksi.php";
+            require "views/admin/user_list.php";
+            break;
+        case $me.'/admin/user/list?feedback=1' :
+            include "config/koneksi.php";
+            require "views/admin/user_list.php";
+            break;
+        case $me.'/admin/user/list?feedback=2' :
+            include "config/koneksi.php";
+            require "views/admin/user_list.php";
+            break;
+        case $me.'/admin/user/tambah' :
+            include "config/koneksi.php";
+            require "views/admin/user_tambah_form.php";
+            break;
+        case $me.'/admin/user/tambah?feedback=1' :
+            include "config/koneksi.php";
+            require "views/admin/user_tambah_form.php";
+            break;
+        case $me.'/admin/user/tambah?feedback=2' :
+            include "config/koneksi.php";
+            require "views/admin/user_tambah_form.php";
+            break;
+        case $me.'/admin/instruktur/list' :
+            include "config/koneksi.php";
+            require "views/admin/instruktur_list.php";
+            break;
         default:
             http_response_code(404);
             echo "404";

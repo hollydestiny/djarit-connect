@@ -7,7 +7,7 @@ if(isset($_GET['data'])){
 $id = $_GET['data'];
  
 //Query input menginput data kedalam tabel barang
-  $query="DELETE FROM tb_diklat WHERE id_diklat='$id' ";
+  $query="DELETE FROM tb_diklat WHERE id='$id' ";
 
 //Mengeksekusi/menjalankan query diatas	
   $hasil=mysqli_query($koneksi,$query);

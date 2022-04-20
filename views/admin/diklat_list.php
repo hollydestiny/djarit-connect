@@ -85,9 +85,9 @@
                         <?php echo $data['tgl_selesai'] ?>
                       </td>
                       <td width="200px">
-                         <a href="<?=SERVER.'views/admin/diklat_edit_form.php?data='.$data['id_diklat']?>"
+                         <a href="<?=SERVER.'views/admin/diklat_edit_form.php?data='.$data['id']?>"
                          class="btn btn-small"><i class="fas fa-edit"></i> Perbarui</a>
-                         <?php $url_bro = SERVER.'controller/admin/delete_diklat.php?data='.$data['id_diklat'];?>
+                         <?php $url_bro = SERVER.'controller/admin/delete_diklat.php?data='.$data['id'];?>
                          <a onclick="deleteConfirm('<?= $url_bro?>')"
                             href="#!" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
                       </td>

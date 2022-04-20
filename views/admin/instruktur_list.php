@@ -28,7 +28,7 @@
            <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Data Tabel Kegiatan</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Data Tabel Instruktur</h6>
             </div>
             <div class="card-body">
               <?php 
@@ -46,29 +46,18 @@
                   <thead>
                     <tr>
                       <th width="50px">No</th>
-                      <th>Nama Diklat</th>
-                      <!-- <th>Instruktur</th> -->
-                      <th width="600px">Kegiatan</th>
-                      <th>Tanggal</th>
-                      <th width="250px">Aksi</th>
+                      <th>Nama</th>
+                      <th>Email</th>
+                      <th>Telepon</th>
+                      <th>Jabatan</th>
+                      <th width="300px">Aksi</th>
                     </tr>
                   </thead>
                   
-                  <tbody>
+                  <tbody id="show_data">
                     <?php
-                    $id=$_SESSION['id'];
                     $no = 1;
-                    // $query = mysqli_query($koneksi, 'SELECT * FROM tb_kegiatan');
-                    $query = mysqli_query($koneksi, 
-                      "SELECT 
-                        tb_kegiatan.id,
-                        tb_kegiatan.diklat AS diklat,
-                        tb_kegiatan.kegiatan AS kegiatan,
-                        tb_kegiatan.tanggal AS tanggal,
-                        tb_instruktur.nama AS instruktur
-                      FROM tb_kegiatan
-                      LEFT JOIN tb_instruktur ON tb_kegiatan.id_instruktur=tb_instruktur.id
-                      WHERE tb_kegiatan.id_instruktur='$id'");
+                    $query = mysqli_query($koneksi, 'SELECT * FROM tb_instruktur');
                     while ($data = mysqli_fetch_array($query)) {
                     ?>
                     <tr>
@@ -76,22 +65,24 @@
                         <?php echo $no++ ?>
                       </td>
                       <td>
-                        <?php echo $data['diklat'] ?>
-                      </td>
-                      <!-- <td>
-                        <?php echo $data['instruktur'] ?>
-                      </td> -->
-                      <td>
-                        <?php echo $data['kegiatan'] ?>
+                        <?php echo $data['nama'] ?>
                       </td>
                       <td>
-                        <?php echo $data['tanggal'] ?>
+                        <?php echo $data['email'] ?>
                       </td>
-                                            
+                      <td>
+                        <?php echo $data['telepon'] ?>
+                      </td>
+                      <td>
+                        <?php echo $data['jabatan'] ?>
+                      </td>
+
                       <td width="200px">
-                         <a href="<?=SERVER.'views/instruktur/kegiatan_edit_form.php?data='.$data['id']?>"
+                         <a href="javascript:;" data="<?php echo $data['id']?>"
+							class="btn btn-small item_detail"><i class="fas fa-eye"></i> Detail</a>
+                         <a href="<?=SERVER.'views/admin/user_edit_form.php?data='.$data['id']?>"
                          class="btn btn-small"><i class="fas fa-edit"></i> Perbarui</a>
-                         <?php $url_bro = SERVER.'controller/instruktur/delete_kegiatan.php?data='.$data['id'];?>
+                         <?php $url_bro = SERVER.'controller/admin/delete_user.php?data='.$data['id'];?>
                          <a onclick="deleteConfirm('<?= $url_bro?>')"
                             href="#!" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
                       </td>
@@ -151,6 +142,23 @@
     $('#btn-delete').attr('href', url);
     $('#deleteModal').modal();
   }
+  </script>
+  <script>
+    $(document).ready(function(){
+        $('#show_data').on('click','.item_detail',function(){
+            var id=$(this).attr('data');
+            alert(id);
+            $.ajax({
+                type : "GET",
+                url  : "<?=SERVER?>controller/admin/detail_instruktur.php",
+                dataType : "JSON",
+                data : {data:id},
+                success: function(return_arr){
+                	console.log(return_arr);
+                }
+            });
+        });
+    });
   </script>
 
 </body>

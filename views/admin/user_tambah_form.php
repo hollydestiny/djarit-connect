@@ -26,7 +26,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <div class="card mb-3">
-            <div class="card-header"> <a href="<?=SERVER?>instruktur/kegiatan/list"><i class="fas fa-arrow-left"></i> Kembali</a> </div>
+            <div class="card-header"> <a href="<?=SERVER?>admin/diklat/list"><i class="fas fa-arrow-left"></i> Kembali</a> </div>
             <div class="card-body">
               <?php 
               if(isset($_GET['feedback'])){
@@ -38,39 +38,47 @@
                }
               }
               ?>
-              <form action="<?=SERVER?>controller/instruktur/simpan_data_kegiatan.php" method="post" enctype="multipart/form-data">
-                  <?php
-                      $id = $_SESSION['id'];
+              <form action="<?=SERVER?>controller/admin/simpan_data_user.php" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label for="id">Nama Instruktur/ Assistant*</label>
+                  <select name="id" class="form-control " id="id" required>
+                    <option value="">-PILIH-</option>
+                     <?php
                       $query = mysqli_query($koneksi, 
                       "SELECT 
-                        tb_diklat.nama,
-                        tb_diklat.id,
-                        tb_instruktur.nama AS instruktur
-                      FROM tb_diklat
-                      LEFT JOIN tb_instruktur ON tb_diklat.id=tb_instruktur.id_diklat
-                      WHERE tb_instruktur.id='$id'");
+                        tb_instruktur.nama,
+                        tb_instruktur.id
+                      FROM tb_instruktur
+                      LEFT JOIN tb_user ON tb_instruktur.id=tb_user.id
+                      WHERE tb_user.id IS NULL OR tb_instruktur.id IS NULL");
                       while ($data = mysqli_fetch_array($query)) {
                       ?>
-                      <div class="form-group">
-                        <label for="diklat">Diklat</label>
-                        <input class="form-control " type="text" id="diklat" name="diklat" value="<?= $data['nama']?>" readonly />
-                        <div class="invalid-feedback"> </div>
-                      </div>
-                     <?php }?>
-
-                <div class="form-group">
-                  <label for="kegiatan">Kegiatan*</label>
-                  <textarea class="form-control " type="text" name="kegiatan" placeholder="Kegiatan Diklat" required="required" /></textarea>
+                        <option value="<?= $data['id'] ?>"><?= $data['nama'] ?></option>
+                    <?php }?>
+                  </select>
                   <div class="invalid-feedback"> </div>
                 </div>
-                <input type="hidden" name="instruktur" value="<?=$_SESSION['id']?>" />
+                <div class="form-group">
+                  <label for="username">Username*</label>
+                  <input class="form-control " type="text" name="username" placeholder="Username" required="required" />
+                  <div class="invalid-feedback"> </div>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password*</label>
+                  <input class="form-control " type="password" name="password" required="required" />
+                  <div class="invalid-feedback"> </div>
+                </div>
+                <div class="form-group">
+                  <label for="level">Level*</label>
+                  <select name="level" class="form-control " id="level" required> 
+                    <option value="">-PILIH-</option>
+                    <option value="instruktur">Instruktur</option>
+                    <option value="assistant">Assistant</option>
+                  </select>
+                  <div class="invalid-feedback"> </div>
+                </div>
                 <!-- <input type="hidden" name="status" value="0" />
                 <input type="hidden" name="nilai" value="0" /> -->
-                <!-- <div class="form-group">
-                  <label for="selesai">Tgl Selesai Diklat</label>
-                  <input class="form-control " type="date" name="selesai" />
-                  <div class="invalid-feedback"> </div>
-                </div> -->
                 <input class="btn btn-success" type="submit" name="btn" value="Save" /> </form>
             </div>
             <div class="card-footer small text-muted"> * Wajib diisi </div>

@@ -28,7 +28,7 @@
             <div class="card-body">
                     <?php
                       $id = $_SESSION['id'];
-                      $query = mysqli_query($koneksi, "SELECT * FROM tb_instruktur WHERE id_instruktur='$id'");
+                      $query = mysqli_query($koneksi, "SELECT * FROM tb_instruktur WHERE id='$id'");
                       $data = mysqli_fetch_assoc($query);
                     ?>
               <form action="<?=SERVER?>controller/admin/simpan_data_diklat.php" method="post" enctype="multipart/form-data">
@@ -54,7 +54,18 @@
                 </div>
                 <div class="form-group">
                   <label for="angkatan">Instruktur Diklat</label>
-                  <input class="form-control " type="text" value="<?=$data['diklat']?>" readonly />
+                  <?php
+                  $id = $data['id'];
+                  $query = mysqli_query($koneksi, 
+                  "SELECT 
+                    tb_diklat.nama
+                  FROM tb_diklat
+                  LEFT JOIN tb_instruktur ON tb_diklat.id=tb_instruktur.id_diklat
+                  WHERE tb_instruktur.id='$id'");
+                  while ($data1 = mysqli_fetch_array($query)) {
+                  ?>
+                  <input class="form-control " type="text" value="<?=$data1['nama']?>" readonly />
+                  <?php }  ?>
                   <div class="invalid-feedback"> </div>
                 </div>
                 <div class="form-group">
@@ -63,6 +74,26 @@
                   <div class="invalid-feedback"> </div>
                 </div>
               </form>
+            </div>
+          </div>
+          <div class="card mb-3">
+            <div class="card-header"> <i class="fas fa-exclamation-triangle"></i> Cacatan Developer</div>
+            <div class="card-body">
+              <p><b>tb_kegiatan</b> berelasi dengan <b>tb_instruktur</b>, <b>tb_kegiatan</b> merupakan bagian dari <b>tb_instruktur</b> dimana <b>tb_instruktur</b>('one') dan
+                <b>tb_kegiatan</b> ('many')
+              </p>
+              <p><b>tb_kegiatan.id_instruktur</b> mertupakan <b>Foreign Key</b> dari <b>tb_instruktur.id</b> (reference key) denan option <b>CASCADE</b></p>
+
+              <p>Dalam Foreign Key Options tersebut ada 4 pilihan pengaturan antara lain: </p>
+              <p><b>RESCRICT</b> adalah jika kita menghapus atau merubah baris data dalam tabel A maka tidak akan diperbolehkan jika pada tabel B masih ditemukan relasi datanya. InnoDB dapat menolak perintah perubahan atau penghapusan tersebut.</p>
+              <p><b>CASCADE</b> adalah jika kita menghapus atau merubah baris data dalam tabel A secara otomatis akan menghapus atau merubah baris yang sesuai dalam tabel B.</p>
+              <p><b>SET NULL</b> adalah jika kita menghapus atau merubah baris data dalam tabel A secara otomatis akan merubah baris pada tabel B menjadi NULL pada kolom yang terelasi. Hal ini dapat dilakukan jika kolom foreign key tidak memiliki pengaturan NOT NULL.</p>
+              <p><b>NO ACTION</b> dalam standar SQL, NO ACTION berarti tidak merubah apapun pada tabel anak jika kita merubah data pada salah satu tabelnya.</p>
+
+              <p><b>CASE</b> : apabila data instrukur dihapus semua data kegiatan yang terkait juga akan terhapus</p>
+
+              <p><b>PENTING</b> : intruktur/user yang login hanya dapat menulis/mengisi tabel kegiatan <b>HANYA</b> pada diklat yang terkait dengan instruktur</p>
+
             </div>
           </div>
         </div>

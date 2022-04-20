@@ -64,8 +64,8 @@
       <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Menu:</h6>
-          <a class="collapse-item" href="utilities-color.html">List User</a>
-          <a class="collapse-item" href="utilities-border.html">Tambah User</a>
+          <a class="collapse-item" href="<?=SERVER?>admin/user/list">List User</a>
+          <a class="collapse-item" href="<?=SERVER?>admin/user/tambah">Tambah User</a>
         </div>
       </div>
     </li>
@@ -128,11 +128,11 @@
               }
               if(isset($_GET['data'])){
               $id = $_GET['data'];
-              $query = mysqli_query($koneksi, "SELECT * FROM tb_diklat WHERE id_diklat='$id'");
+              $query = mysqli_query($koneksi, "SELECT * FROM tb_diklat WHERE id='$id'");
               while ($data = mysqli_fetch_array($query)) {
               ?>
               <form action="<?=SERVER?>controller/admin/edit_diklat.php" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="id" value="<?=$data['id_diklat']?>" />
+                <input type="hidden" name="id" value="<?=$data['id']?>" />
                 <div class="form-group">
                   <label for="diklat">Nama Diklat*</label>
                   <input class="form-control " type="text" name="diklat" placeholder="Nama Diklat" value="<?=$data['nama']?>" required="required" />

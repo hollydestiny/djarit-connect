@@ -26,7 +26,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item">
+    <li class="nav-item ">
       <a class="nav-link" href="<?=SERVER?>instruktur">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
@@ -37,20 +37,56 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-      Log
+      Identity
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item active">
+    <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-list"></i>
-        <span>Kegiatan Diklat</span>
+        <i class="fas fa-fw fa-address-card"></i>
+        <span>Instruktur</span>
       </a>
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Menu:</h6>
-          <a class="collapse-item" href="<?=SERVER?>instruktur/kegiatan/list">List Log Kegiatan</a>
-          <a class="collapse-item" href="<?=SERVER?>instruktur/kegiatan/tambah">Tambah Log Kegiatan</a>
+            <a class="collapse-item" href="buttons.html">List Instruktur</a>
+            <a class="collapse-item" href="<?=SERVER?>admin/instruktur/tambah">Tambah Instruktur</a>
+        </div>
+      </div>
+    </li>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item active">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+        <i class="fas fa-fw fa-user"></i>
+        <span>User</span>
+      </a>
+      <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Menu:</h6>
+          <a class="collapse-item" href="<?=SERVER?>admin/user/list">List User</a>
+          <a class="collapse-item" href="<?=SERVER?>admin/user/tambah">Tambah User</a>
+        </div>
+      </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+      Diklat
+    </div>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDiklat" aria-expanded="true" aria-controls="collapseDiklat">
+        <i class="fas fa-fw fa-address-card"></i>
+        <span>Jenis Diklat</span>
+      </a>
+      <div id="collapseDiklat" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Menu:</h6>
+          <a class="collapse-item" href="<?=SERVER?>admin/diklat/list">List Diklat</a>
+          <a class="collapse-item" href="<?=SERVER?>admin/diklat/tambah">Tambah Diklat</a>
         </div>
       </div>
     </li>
@@ -79,7 +115,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <div class="card mb-3">
-            <div class="card-header"> <a href="<?=SERVER?>admin/diklat/list"><i class="fas fa-arrow-left"></i> Kembali</a> </div>
+            <div class="card-header"> <a href="<?=SERVER?>admin/user/list"><i class="fas fa-arrow-left"></i> Kembali</a> </div>
             <div class="card-body">
               <?php 
               if(isset($_GET['feedback'])){
@@ -92,21 +128,33 @@
               }
               if(isset($_GET['data'])){
               $id = $_GET['data'];
-              $query = mysqli_query($koneksi, "SELECT * FROM tb_kegiatan WHERE id='$id'");
+              $query = mysqli_query($koneksi, "SELECT * FROM tb_user WHERE id='$id'");
               while ($data = mysqli_fetch_array($query)) {
               ?>
-              <form action="<?=SERVER?>controller/instruktur/edit_kegiatan.php" method="post" enctype="multipart/form-data">
+              <form action="<?=SERVER?>controller/admin/edit_user.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?=$data['id']?>" />
                 <div class="form-group">
-                  <label for="diklat">Diklat*</label>
-                  <input class="form-control " type="text" id="diklat" name="diklat" placeholder="Diklat" value="<?= $data['diklat']?>" readonly />
+                  <label for="nama">Nama*</label>
+                  <input class="form-control " type="text" name="nama" placeholder="Nama User" value="<?=$data['nama']?>" readonly />
                   <div class="invalid-feedback"> </div>
                 </div>
-                <input type="hidden" id="instruktur" name="instruktur" value="<?= $data['id_instruktur']?>" />
-                <input type="hidden" name="tanggal" value="<?=$data['tanggal']?>" />
                 <div class="form-group">
-                  <label for="kegiatan">Kegiatan*</label>
-                  <textarea class="form-control " type="text" id="kegiatan" name="kegiatan" placeholder="Kegiatan Diklat" required="required" /><?= $data['kegiatan']?></textarea>
+                  <label for="username">Username*</label>
+                  <input class="form-control " type="text" name="username" placeholder="Username" value="<?=$data['username']?>" required="required" />
+                  <div class="invalid-feedback"> </div>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password*</label>
+                  <input class="form-control " type="password" name="password" value="<?=$data['password']?>"  required="required" />
+                  <div class="invalid-feedback"> </div>
+                </div>
+                <div class="form-group">
+                  <label for="level">Level*</label>
+                  <select name="level" class="form-control " id="level" required> 
+                    <option value="<?=$data['level']?>"><?=$data['level']?></option>
+                    <option value="instruktur">Instruktur</option>
+                    <option value="assistant">Assistant</option>
+                  </select>
                   <div class="invalid-feedback"> </div>
                 </div>
                 <input class="btn btn-success" type="submit" name="btn" value="Save" /> 

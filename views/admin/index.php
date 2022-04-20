@@ -139,6 +139,7 @@
                       <th width="50px">No.</th>
                       <th>Jenis Diklat</th>
                       <th width="800px">Log Kegiatan</th>
+                      <th>Instruktur</th>
                       <th width="200px">Tanggal</th>
                     </tr>
                   </thead>
@@ -146,13 +147,21 @@
                   <tbody>
                     <?php
                     $no = 1;
-                    $query = mysqli_query($koneksi, 'SELECT * FROM tb_kegiatan');
+                    $query = mysqli_query($koneksi, 
+                    "SELECT 
+                      tb_kegiatan.diklat,
+                      tb_kegiatan.kegiatan,
+                      tb_kegiatan.tanggal,
+                      tb_instruktur.nama AS nama
+                    FROM tb_kegiatan
+                    LEFT JOIN tb_instruktur ON tb_kegiatan.id_instruktur=tb_instruktur.id");
                     while ($data = mysqli_fetch_array($query)) {
                     ?>
                     <tr>
                       <td><?=$no++?></td>
                       <td><?=$data['diklat']?></td>
                       <td><?=$data['kegiatan']?></td>
+                      <td><?=$data['nama']?></td>
                       <td><?=$data['tanggal']?></td>
                     </tr>
                     <?php } ?>                    
@@ -164,6 +173,21 @@
 
         </div>
         <!-- /.container-fluid -->
+
+        <div class="container-fluid">
+            <div class="card mb-3">
+            <div class="card-header"> <i class="fas fa-exclamation-triangle"></i> Cacatan Developer</div>
+            <div class="card-body">
+              <p><b>tb_diklat</b> berelasi dengan <b>tb_instruktur</b>, <b>tb_instruktur</b> merupakan bagian dari <b>tb_diklat</b> dimana <b>tb_instruktur</b>('many') dan
+                <b>tb_diklat</b> ('one')
+              </p>
+              <p><b>tb_instruktur.id_diklat</b> merupakan <b>Foreign Key</b> dari <b>tb_diklat.id</b> (reference key) dengan option <b>CASCADE</b></p>
+
+              <p><b>CASE</b> : apabila data diklat dihapus semua data instruktur dan asistent yang terkait juga akan terhapus</p>
+
+            </div>
+          </div>
+        </div>
 
       </div>
       <!-- End of Main Content -->

@@ -3,7 +3,7 @@
  
 session_start();
  
-if (!isset($_SESSION['peran'])=='instruktur') {
+if (!isset($_SESSION['level'])=='instruktur') {
     header('Location: '.SERVER.'login');
 }
  

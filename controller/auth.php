@@ -10,8 +10,8 @@ include "../config/config.php";
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-echo $username;
-echo $password;
+// echo $username;
+// echo $password;
 
 
 
@@ -19,6 +19,7 @@ echo $password;
 $login = mysqli_query($koneksi,"select * from tb_user where username='$username' and password='$password'");
 // menghitung jumlah data yang ditemukan
 $cek = mysqli_num_rows($login);
+// echo $cek;
 
 //cek apakah username dan password di temukan pada database
 if($cek > 0){
@@ -26,30 +27,30 @@ if($cek > 0){
 	$data = mysqli_fetch_assoc($login);
 
 	// cek jika user login sebagai admin
-	if($data['peran']=="admin"){
+	if($data['level']=="admin"){
 
 		// buat session login dan username
 		$_SESSION['username'] = $username;
-		$_SESSION['peran'] = "admin";
-		$_SESSION['id'] = $data['id_user'];
+		$_SESSION['level'] = "admin";
+		$_SESSION['id'] = $data['id'];
 		// alihkan ke halaman dashboard admin
 		header('location: '.SERVER.'admin');
 
 	// cek jika user login sebagai pegawai
-	}else if($data['peran']=="instruktur"){
+	}else if($data['level']=="instruktur"){
 		// buat session login dan username
 		$_SESSION['username'] = $username;
-		$_SESSION['peran'] = "instruktur";
-		$_SESSION['id'] = $data['id_user'];
+		$_SESSION['level'] = "instruktur";
+		$_SESSION['id'] = $data['id'];
 		// alihkan ke halaman dashboard pegawai
 		header('location: '.SERVER.'instruktur');
 
 	// cek jika user login sebagai pengurus
-	}else if($data['level']=="asistent"){
+	}else if($data['level']=="assistant"){
 		// buat session login dan username
 		$_SESSION['username'] = $username;
-		$_SESSION['peran'] = "asistent";
-		$_SESSION['id'] = $data['id_user'];
+		$_SESSION['level'] = "assistant";
+		$_SESSION['id'] = $data['id'];
 		// alihkan ke halaman dashboard pengurus
 		header('location: '.SERVER.'instruktur');
 
@@ -58,6 +59,7 @@ if($cek > 0){
 		// alihkan ke halaman login kembali
 		header('location: '.SERVER.'login?feedback=gagal');
 	}
+
 
 	
 }else{

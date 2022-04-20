@@ -11,7 +11,7 @@ $tanggal=$_POST["tanggal"];
 $instruktur=$_POST["instruktur"];
  
 //Query input menginput data kedalam tabel barang
-  $query="UPDATE tb_kegiatan SET id_kegiatan='$id',diklat='$diklat',kegiatan='$kegiatan',tanggal='$tanggal',id_instruktur='$instruktur' WHERE id_kegiatan='$id'";
+  $query="UPDATE tb_kegiatan SET diklat='$diklat',kegiatan='$kegiatan',tanggal='$tanggal',id_instruktur='$instruktur' WHERE id='$id'";
 
 //Mengeksekusi/menjalankan query diatas	
   $hasil=mysqli_query($koneksi,$query);

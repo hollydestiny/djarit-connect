@@ -2,7 +2,7 @@
  
 session_start();
  
-if (!isset($_SESSION['peran'])=='admin') {
+if (!isset($_SESSION['level'])=='admin') {
     header('Location: '.SERVER.'login');
 }
  
