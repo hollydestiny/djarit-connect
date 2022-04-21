@@ -13,7 +13,7 @@ if(isset($_POST['simpan'])){
     $email = $_POST['email'];
     $telp = $_POST['telepon'];
     $jabatan = $_POST['jabatan'];
-    $materi1 = $_POST['materi 1'];
+    $id_diklat = $_POST['id_diklat'];
     $no_ktp = $_POST['no_ktp'];
     $file_ktp = $_POST['file_ktp'];
     $no_npwp = $_POST['no_npwp'];
@@ -22,12 +22,12 @@ if(isset($_POST['simpan'])){
     $alamat = $_POST['alamat'];
     $foto = $_POST['foto'];
 
-  if ($password == $cpassword) {
+  if ($email == $cpassword) {
     $sql = "SELECT * FROM tb_instruktur WHERE email='$email'";
     $result = mysqli_query($koneksi, $sql);
     if (!$result->num_rows > 0) {
       $sql = "INSERT INTO tb_instruktur (nama, email, jabatan, id_diklat, no_ktp, file_ktp, no_npwp, file_npwp, cv, alamat, foto);
-          VALUES ('$nama', '$email', 'telp', '$jabatan', '$materi1', '$materi2','$no_ktp', '$file_ktp', '$no_npwp', '$file_npwp', '$cv', '$alamat', '$foto')";
+          VALUES ('$nama', '$email', 'telp', '$jabatan', '$id_diklat','$no_ktp', '$file_ktp', '$no_npwp', '$file_npwp', '$cv', '$alamat', '$foto')";
       $result = mysqli_query($koneksi, $sql);
       if ($result) {
         header('Location: index.php');
@@ -35,8 +35,7 @@ if(isset($_POST['simpan'])){
         $email= "";
         $telp = "";
         $jabatan = "";
-        $materi1 = "";
-        $materi2 = "";
+        $id_diklat = "";
         $no_ktp = "";
         $file_ktp = "";
         $no_npwp = "";
@@ -104,13 +103,8 @@ if(isset($_POST['simpan'])){
                 </div>
                 <div class="form-group">
                   <label for="nama">Materi 1*</label>
-                  <input class="form-control " type="text" name="materi 1" placeholder="Materi 1" />
-                  <div class="invalid-feedback" value="<?php echo $_POST['materi1']; ?>" required> </div>
-                </div>
-                <div class="form-group">
-                  <label for="nama">Materi 2*</label>
-                  <input class="form-control " type="text" name="materi 2" placeholder="Materi 2" />
-                  <div class="invalid-feedback" value="<?php echo $_POST['materi2']; ?>" required>  </div>
+                  <input class="form-control " type="text" name="id_diklat" placeholder="Id Diklat" />
+                  <div class="invalid-feedback" value="<?php echo $_POST['id_diklat']; ?>" required> </div>
                 </div>
                 <div class="form-group">
                   <label for="nama">Nomor KTP*</label>
