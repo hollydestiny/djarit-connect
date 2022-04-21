@@ -150,6 +150,10 @@
                 data : {data:id},
                 timeout: 5000,
                 success: function(response){
+                  if (response[0].status){
+                    console.log(response[0].status);
+                    $('#statusModal').modal('show');
+                  }else{                 
                   $('#detailModal').modal('show');
                   var len = response.length;
                   for(var i=0; i<len; i++){
@@ -174,6 +178,7 @@
                     var dir_foto = "<?=SERVER?>assets/img/upload/foto/";
                     var gambar = dir_foto.concat(response[i].foto);
                     $('#foto_instruktur').attr('src', gambar);
+                  }
                   }
                 }
             });

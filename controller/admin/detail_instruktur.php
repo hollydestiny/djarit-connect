@@ -57,5 +57,9 @@ if(isset($_GET['data'])){
         // Encoding array in JSON format
         echo json_encode($return_arr);
     }
+    
+    if (empty($return_arr)) {
+        echo '[{"status":"gagal"}]';
+    }
 }
 ?>
