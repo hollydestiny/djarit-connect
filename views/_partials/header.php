@@ -2,7 +2,7 @@
     <div class="container d-flex align-items-center justify-content-between">
 
       <!-- Uncomment below if you prefer to use an image logo -->
-       <a href="index.html" class="logo"><img src="<?=SERVER?>assets/img/logo_new.png" alt=""></a>
+       <a href="<?php echo SERVER?>" class="logo"><img src="<?=SERVER?>assets/img/logo_new.png" alt=""></a>
 
       <nav id="navbar" class="navbar">
         <ul>

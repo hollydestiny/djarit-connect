@@ -128,7 +128,10 @@
               }
               if(isset($_GET['data'])){
               $id = $_GET['data'];
-              $query = mysqli_query($koneksi, "SELECT tb_instruktur.id_diklat,tb_instruktur.nama, tb_diklat.nama as diklat, tb_instruktur.id, tb_instruktur.email, tb_instruktur.telepon, tb_instruktur.jabatan, tb_instruktur.no_ktp, tb_instruktur.file_ktp, tb_instruktur.no_npwp, tb_instruktur.file_npwp, tb_instruktur.cv, tb_instruktur.alamat, tb_instruktur.foto FROM tb_instruktur LEFT JOIN tb_diklat on tb_instruktur.id_diklat=tb_diklat.id WHERE tb_instruktur.id='$id'");
+              $query = mysqli_query($koneksi, "SELECT tb_instruktur.id_diklat,tb_instruktur.nama, tb_diklat.nama as diklat, tb_instruktur.id, tb_instruktur.email, 
+                  tb_instruktur.telepon, tb_instruktur.jabatan, tb_instruktur.no_ktp, tb_instruktur.file_ktp, tb_instruktur.no_npwp, tb_instruktur.file_npwp, tb_instruktur.cv,
+                  tb_instruktur.alamat, tb_instruktur.foto 
+                  FROM tb_instruktur LEFT JOIN tb_diklat on tb_instruktur.id_diklat=tb_diklat.id WHERE tb_instruktur.id='$id'");
               while ($data = mysqli_fetch_array($query)) {
               ?>
               <form action="<?=SERVER?>controller/admin/edit_instruktur.php" method="post" enctype="multipart/form-data">
