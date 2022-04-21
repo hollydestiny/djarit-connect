@@ -147,14 +147,37 @@
     $(document).ready(function(){
         $('#show_data').on('click','.item_detail',function(){
             var id=$(this).attr('data');
-            alert(id);
             $.ajax({
                 type : "GET",
                 url  : "<?=SERVER?>controller/admin/detail_instruktur.php",
                 dataType : "JSON",
                 data : {data:id},
-                success: function(return_arr){
-                	console.log(return_arr);
+                success: function(response){
+                	$('#detailModal').modal('show');
+                  var len = response.length;
+                  for(var i=0; i<len; i++){
+                    var id = response[i].id;
+                    var nama = response[i].nama;
+                    var email = response[i].email;
+                    var telepon = response[i].telepon;
+
+                    $('[name="id"]').val(id);
+                    $('[name="nama"]').val(nama);
+                    $('[name="email"]').val(email);
+                    $('[name="telepon"]').val(telepon);
+                    $('[name="jabatan"]').val(response[i].jabatan);
+                    $('[name="diklat"]').val(response[i].diklat);
+                    $('[name="no_ktp"]').val(response[i].no_ktp);
+                    $('[name="no_npwp"]').val(response[i].no_npwp);
+                    $('[name="cv"]').val(response[i].cv);
+                    $('[name="alamat"]').val(response[i].alamat);
+                    var dir_file = "<?=SERVER?>assets/img/upload/file/";
+                    document.getElementById("file_ktp").href=dir_file.concat(response[i].file_ktp);
+                    document.getElementById("file_npwp").href=dir_file.concat(response[i].file_npwp);
+                    var dir_foto = "<?=SERVER?>assets/img/upload/foto/";
+                    var gambar = dir_foto.concat(response[i].foto);
+                    $('#foto_instruktur').attr('src', gambar);
+                  }
                 }
             });
         });
