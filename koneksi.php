@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 $host = 'localhost';
 $user = 'root';
 $pass = '';
