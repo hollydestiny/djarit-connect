@@ -21,6 +21,15 @@
             require "views/instruktur/index.php";
             break;
         case $me.'/admin/instruktur/tambah' :
+            include "config/koneksi.php";
+            require "views/admin/instruktur_tambah_form.php";
+            break;
+        case $me.'/admin/instruktur/tambah?feedback=1' :
+            include "config/koneksi.php";
+            require "views/admin/instruktur_tambah_form.php";
+            break;
+        case $me.'/admin/instruktur/tambah?feedback=2' :
+            include "config/koneksi.php";
             require "views/admin/instruktur_tambah_form.php";
             break;
         case $me.'/admin/diklat/tambah' :
@@ -99,6 +108,14 @@
             require "views/admin/user_tambah_form.php";
             break;
         case $me.'/admin/instruktur/list' :
+            include "config/koneksi.php";
+            require "views/admin/instruktur_list.php";
+            break;
+        case $me.'/admin/instruktur/list?feedback=1' :
+            include "config/koneksi.php";
+            require "views/admin/instruktur_list.php";
+            break;
+        case $me.'/admin/instruktur/list?feedback=2' :
             include "config/koneksi.php";
             require "views/admin/instruktur_list.php";
             break;

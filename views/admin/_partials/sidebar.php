@@ -13,7 +13,7 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item <?php echo $uri_segments[3] == '' ? 'active': '' ?>">
-  <a class="nav-link" href="<?=SESRVER?>admin">
+  <a class="nav-link" href="<?=SERVER?>admin">
     <i class="fas fa-fw fa-tachometer-alt"></i>
     <span>Dashboard</span></a>
 </li>
@@ -27,7 +27,7 @@
 </div>
 
 <!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
+<li class="nav-item <?php echo $uri_segments[3] == 'instruktur' ? 'active': '' ?>">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
     <i class="fas fa-fw fa-address-card"></i>
     <span>Instruktur</span>

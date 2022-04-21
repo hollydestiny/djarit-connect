@@ -26,56 +26,96 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <div class="card mb-3">
-            <div class="card-header"> <a href="https://sip-pkl.monlab.site/index.php/admin/siswa/"><i class="fas fa-arrow-left"></i> Kembali</a> </div>
+            <div class="card-header"> <a href="<?=SERVER?>admin/instruktur/list"><i class="fas fa-arrow-left"></i> Kembali</a> </div>
             <div class="card-body">
-              <form action="" method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                  <label for="id">NIS*</label>
-                  <input class="form-control " type="number" name="id" placeholder="Nomor Induk Siswa" />
-                  <div class="invalid-feedback"> </div>
-                </div>
+              <?php 
+              if(isset($_GET['feedback'])){
+              $status = $_GET['feedback'];
+              if($status == 1){
+                  echo "<div class='alert alert-success' role='alert'>Berhasil Disimpan</div>";
+               }else if($status == 2){
+                  echo "<div class='alert alert-danger' role='alert'>Gagal Disimpan</div>";
+               }
+              }
+              ?>
+              <form action="<?=SERVER?>controller/admin/simpan_data_instruktur.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                   <label for="nama">Nama*</label>
-                  <input class="form-control " type="text" name="nama" placeholder="Nama Siswa" />
+                  <input class="form-control " type="text" name="nama" placeholder="Nama Instruktur" reqired/>
                   <div class="invalid-feedback"> </div>
                 </div>
                 <div class="form-group">
-                  <label for="jurusan">Jurusan*</label>
-                  <select name="jurusan" class="form-control " id="jurusan">
+                  <label for="email">Email*</label>
+                  <input class="form-control " type="email" name="email" placeholder="Email" required/>
+                  <div class="invalid-feedback"> </div>
+                </div>
+                <div class="form-group">
+                  <label for="telepon">Nomor Telepon*</label>
+                  <input class="form-control " type="number" name="telepon" placeholder="08523456789" required />
+                  <div class="invalid-feedback"> </div>
+                </div>
+                <div class="form-group">
+                  <label for="jabatan">Jabatan*</label>
+                  <select name="jabatan" class="form-control " id="jabatan" required>>
                     <option value="">-PILIH-</option>
-                    <option value="613720ffd17d3">Terknik Kendaraan Ringan</option>
-                    <option value="6137227164874">Teknik Sepeda Motor</option>
-                    <option value="6139dc1666e67">Teknik Multimedia</option>
-                    <option value="613f3b6c63986">Teknik Konstruksi Gedung </option>
-                    <option value="62349135108d5">Teknik Gambar Sipil Arsitektur</option>
-                    <option value="6234914f4aab1">Teknik Audio Video</option>
-                    <option value="623491761db4e">Teknik Instalasi Tenaga Listrik</option>
-                    <option value="6234918d39230">Teknik Las dan Fabrikasi Logam</option>
-                    <option value="623491a39f3b1">Teknik Pemesinan</option>
+                    <option value="instruktur">Instruktur</option>
+                    <option value="assitant">Assistant Instruktur</option>
                   </select>
                   <div class="invalid-feedback"> </div>
                 </div>
                 <div class="form-group">
-                  <label for="kelas">Kelas*</label>
-                  <select name="kelas" class="form-control " id="kelas">
+                  <label for="diklat">Instruktur Diklat*</label>
+                  <select name="diklat" class="form-control " id="jabatan" required>>
                     <option value="">-PILIH-</option>
+                    <?php
+                    $query = mysqli_query($koneksi, 'SELECT * FROM tb_diklat');
+                    while ($data = mysqli_fetch_array($query)) {
+                    ?>
+                    <option value="<?=$data['id']?>"><?=$data['nama']?></option>
+                  <?php }?>
                   </select>
                   <div class="invalid-feedback"> </div>
                 </div>
                 <div class="form-group">
-                  <label for="tlp">Telepon</label>
-                  <input class="form-control " type="number" name="tlp" placeholder="Nomor Telepon" />
+                  <label for="alamat">Alamat*</label>
+                  <input class="form-control " type="text" name="alamat" placeholder="Alamat" required />
                   <div class="invalid-feedback"> </div>
                 </div>
-                <!-- <input type="hidden" name="status" value="0" />
-                                      <input type="hidden" name="nilai" value="0" /> -->
+                <div class="form-group">
+                  <label for="no_ktp">Nomor KTP*</label>
+                  <input class="form-control " type="number" name="no_ktp" placeholder="Nomor KTP" required />
+                  <div class="invalid-feedback"> </div>
+                </div>
+                <div class="form-group">
+                  <label for="no_npwp">Nomor NPWP*</label>
+                  <input class="form-control " type="number" name="no_npwp" placeholder="Nomor NPWP" required />
+                  <div class="invalid-feedback"> </div>
+                </div>
+                <div class="form-group">
+                  <label for="cv">CV*</label>
+                  <textarea class="form-control" type="text" name="cv" placeholder="CV anda" required></textarea> 
+                  <div class="invalid-feedback"> </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="ktp">File KTP</label>
+                  <input class="form-control-file " type="file" name="file_ktp" />
+                  <div class="invalid-feedback"> </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="npwp">File NPWP</label>
+                  <input class="form-control-file " type="file" name="npwp" />
+                  <div class="invalid-feedback"> </div>
+                </div>
+                                
                 <div class="form-group">
                   <label for="foto">Foto</label>
                   <input class="form-control-file " type="file" name="foto" />
                   <div class="invalid-feedback"> </div>
                 </div>
                 <input class="btn btn-success" type="submit" name="btn" value="Save" /> </form>
-            </div>
+              </div>
             <div class="card-footer small text-muted"> * Wajib diisi </div>
           </div>
         </div>

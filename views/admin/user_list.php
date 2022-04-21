@@ -49,11 +49,11 @@
                       <th>Nama User</th>
                       <th>Username</th>
                       <th>Level</th>
-                      <th width="250px">Aksi</th>
+                      <th width="300px">Aksi</th>
                     </tr>
                   </thead>
                   
-                  <tbody>
+                  <tbody id="show_data">
                     <?php
                     $no = 1;
                     $query = mysqli_query($koneksi, 'SELECT * FROM tb_user');
@@ -74,6 +74,8 @@
                       </td>
 
                       <td width="200px">
+                         <a href="javascript:;" data="<?php echo $data['id']?>"
+                         class="btn btn-small item_detail"><i class="fas fa-eye"></i> Detail</a>
                          <a href="<?=SERVER.'views/admin/user_edit_form.php?data='.$data['id']?>"
                          class="btn btn-small"><i class="fas fa-edit"></i> Perbarui</a>
                          <?php $url_bro = SERVER.'controller/admin/delete_user.php?data='.$data['id'];?>
@@ -136,6 +138,47 @@
     $('#btn-delete').attr('href', url);
     $('#deleteModal').modal();
   }
+  </script>
+  <script>
+    $(document).ready(function(){
+        $('#show_data').on('click','.item_detail',function(){
+            var id=$(this).attr('data');
+            $.ajax({
+                type : "GET",
+                url  : "<?=SERVER?>controller/admin/detail_instruktur.php",
+                dataType : "JSON",
+                data : {data:id},
+                timeout: 5000,
+                success: function(response){
+                  $('#detailModal').modal('show');
+                  var len = response.length;
+                  for(var i=0; i<len; i++){
+                    var id = response[i].id;
+                    var nama = response[i].nama;
+                    var email = response[i].email;
+                    var telepon = response[i].telepon;
+
+                    $('[name="id"]').val(id);
+                    $('[name="nama"]').val(nama);
+                    $('[name="email"]').val(email);
+                    $('[name="telepon"]').val(telepon);
+                    $('[name="jabatan"]').val(response[i].jabatan);
+                    $('[name="diklat"]').val(response[i].diklat);
+                    $('[name="no_ktp"]').val(response[i].no_ktp);
+                    $('[name="no_npwp"]').val(response[i].no_npwp);
+                    $('[name="cv"]').val(response[i].cv);
+                    $('[name="alamat"]').val(response[i].alamat);
+                    var dir_file = "<?=SERVER?>assets/img/upload/file/";
+                    document.getElementById("file_ktp").href=dir_file.concat(response[i].file_ktp);
+                    document.getElementById("file_npwp").href=dir_file.concat(response[i].file_npwp);
+                    var dir_foto = "<?=SERVER?>assets/img/upload/foto/";
+                    var gambar = dir_foto.concat(response[i].foto);
+                    $('#foto_instruktur').attr('src', gambar);
+                  }
+                }
+            });
+        });
+    });
   </script>
 
 </body>

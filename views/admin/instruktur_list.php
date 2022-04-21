@@ -79,10 +79,10 @@
 
                       <td width="200px">
                          <a href="javascript:;" data="<?php echo $data['id']?>"
-							class="btn btn-small item_detail"><i class="fas fa-eye"></i> Detail</a>
-                         <a href="<?=SERVER.'views/admin/user_edit_form.php?data='.$data['id']?>"
+							           class="btn btn-small item_detail"><i class="fas fa-eye"></i> Detail</a>
+                         <a href="<?=SERVER.'views/admin/instruktur_edit_form.php?data='.$data['id']?>"
                          class="btn btn-small"><i class="fas fa-edit"></i> Perbarui</a>
-                         <?php $url_bro = SERVER.'controller/admin/delete_user.php?data='.$data['id'];?>
+                         <?php $url_bro = SERVER.'controller/admin/delete_instruktur.php?data='.$data['id'];?>
                          <a onclick="deleteConfirm('<?= $url_bro?>')"
                             href="#!" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
                       </td>

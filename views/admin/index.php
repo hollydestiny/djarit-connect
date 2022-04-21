@@ -82,7 +82,12 @@
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Instruktur</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">30</div>
+                          <?php
+                          $instruktur = mysqli_query($koneksi,"select * from tb_instruktur");
+                          // menghitung jumlah data yang ditemukan
+                          $cek_instruktur = mysqli_num_rows($instruktur);
+                          ?>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $cek_instruktur?></div>
                         </div>
                       </div>
                     </div>
