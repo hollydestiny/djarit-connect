@@ -110,7 +110,7 @@
 
         <div class="form-group" >
           <div class="col-xs-9" style="align:center;">
-            <img id="foto_instruktur" src="" alt="your image" class="img-responsive"/>
+            <img id="foto_instruktur" src="" alt="your image" style="display: block;margin-left: auto;margin-right: auto;width: 50%;"/>
           </div>
         </div>
 

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-6">
         <h4>Join Our Newsletter</h4>
-        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+        <p>However, none of the things I will read but it is our great fault that I will read many</p>
         <form action="" method="post">
           <input type="email" name="email"><input type="submit" value="Subscribe">
         </form>
@@ -19,13 +19,11 @@
     <div class="row">
 
       <div class="col-lg-3 col-md-6 footer-contact">
-        <h3>BizLand<span>.</span></h3>
+        <h3>DJarit<span>.</span></h3>
         <p>
-          A108 Adam Street <br>
-          New York, NY 535022<br>
-          United States <br><br>
-          <strong>Phone:</strong> +1 5589 55488 55<br>
-          <strong>Email:</strong> info@example.com<br>
+          Jl. WR Supratman No.302, Kesiman Kertalangu, Kec. Denpasar Tim., Kota Denpasar, Bali 80237<br><br>
+          <strong>Phone:</strong> +(0361) 465455 <br>
+          <strong>Email:</strong> bdidenpasar@kemenperin.go.id<br>
         </p>
       </div>
 
@@ -53,7 +51,7 @@
 
       <div class="col-lg-3 col-md-6 footer-links">
         <h4>Our Social Networks</h4>
-        <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+        <p>Follow dan Subcribe Us</p>
         <div class="social-links mt-3">
           <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
           <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>

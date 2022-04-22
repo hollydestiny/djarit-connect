@@ -1,4 +1,40 @@
 <?php
+if(isset($_POST['submit'])){
+
+		if ((($_FILES["file"]["type"] == "image/gif")
+		|| ($_FILES["file"]["type"] == "image/jpeg")
+		|| ($_FILES["file"]["type"] == "image/pjpeg"))
+		&& ($_FILES["file"]["size"] < 200000000))
+		  {
+		  if ($_FILES["file"]["error"] > 0)
+		    {
+		    echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
+		    }
+		  else
+		    {
+		    echo "Upload: " . $_FILES["file"]["name"] . "<br />";
+		    echo "Type: " . $_FILES["file"]["type"] . "<br />";
+		    echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
+		    echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br />";
+
+		    if (file_exists("http://www.yourlifeoutdoors.com/images/" . $_FILES["file"]["name"]))
+		      {
+		      echo $_FILES["file"]["name"] . " already exists. ";
+		      }
+		    else
+		      {
+		      move_uploaded_file($_FILES["file"]["tmp_name"],
+Line 100:		      "http://www.yourlifeoutdoors.com/images/" . $_FILES["file"]["name"]);
+		      echo "Stored in: " . "images/" . $_FILES["file"]["name"];
+		      }
+		    }
+		  }
+		else
+		  {
+		  echo "Invalid file";
+		  }?>
+
+<?php
 //Include file koneksi ke database
 include "../../config/koneksi.php";
 include "../../config/config.php";
@@ -10,16 +46,6 @@ $folderUpload = "../../assets/img/upload";
 $fileFoto = (object) @$_FILES['foto'];
 $fileKtp = (object) @$_FILES['ktp'];
 $fileNpwp = (object)  @$_FILES['npwp'];
-
-if($fileFoto->name==''){
-	$fileFoto->name = 'foto.jpg';
-}
-if($fileKtp->name==''){
-	$fileKtp->name = 'ktp.jpg';
-}
-if($fileNpwp->name==''){
-	$fileNpwp->name = 'npwp.jpg';
-}
 
 //menerima nilai dari kiriman form input-barang 
 $nama=$_POST['nama'];
@@ -45,8 +71,8 @@ $cv=$_POST['cv'];
 // echo $cv;
  
 //Query input menginput data kedalam tabel barang
-  $query="INSERT INTO tb_instruktur(nama,email,telepon,jabatan,id_diklat,no_ktp,no_npwp,alamat,cv,foto,file_ktp,file_npwp) 
-  		  VALUES('$nama','$email','$telepon','$jabatan','$diklat','$no_ktp','$no_npwp','$alamat','$cv','$fileFoto->name','$fileKtp->name','$fileNpwp->name')";
+  $query="INSERT INTO tb_instruktur(nama,email,telepon,jabatan,id_diklat,no_ktp,no_npwp,alamat,cv) 
+  		  VALUES('$nama','$email','$telepon','$jabatan','$diklat','$no_ktp','$no_npwp','$alamat','$cv')";
 
 //Mengeksekusi/menjalankan query diatas	
   $hasil=mysqli_query($koneksi,$query);

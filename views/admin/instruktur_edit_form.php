@@ -166,9 +166,9 @@
                     <option value="<?=$data['id_diklat']?>" name="diklat"><?=$data['diklat']?></option>
                     <?php
                     $query = mysqli_query($koneksi, 'SELECT * FROM tb_diklat');
-                    while ($data = mysqli_fetch_array($query)) {
+                    while ($data1 = mysqli_fetch_array($query)) {
                     ?>
-                    <option value="<?=$data['id']?>"><?=$data['nama']?></option>
+                    <option value="<?=$data1['id']?>"><?=$data1['nama']?></option>
                     <?php }?>
                   </select>
                   <div class="invalid-feedback"> </div>
@@ -185,23 +185,26 @@
                 </div>
                 <div class="form-group">
                   <label for="alamat">Alamat*</label>
-                  <textarea class="form-control" name="alamat" id="alamat" rows="3" placeholder="Alamat"></textarea>
+                  <textarea class="form-control" name="alamat" id="alamat" rows="3" placeholder="Alamat"><?=$data['alamat']?>s</textarea>
                 </div>
                 <div class="form-group">
                   <label for="cv">CV*</label>
-                  <textarea class="form-control" name="cv" id="cv" rows="3" placeholder="CV"></textarea>
+                  <textarea class="form-control" name="cv" id="cv" rows="3" placeholder="CV"><?=$data['cv']?></textarea>
                 </div>
+                <input type="hidden" name="old_npwp" value="<?=$data['file_npwp']?>" />
                 <div class="form-group">
                   <label for="file_npwp">Foto NPWP*</label>
-                  <input type="file" class="form-control-file" id="file_ktp" value="<?=$data['file_npwp']?>" >
+                  <input type="file" class="form-control-file" name="npwp" id="file_npwp" >
                 </div>
+                <input type="hidden" name="old_ktp" value="<?=$data['file_ktp']?>" />
                 <div class="form-group">
                   <label for="file_ktp">Foto KTP*</label>
-                  <input type="file" class="form-control-file" id="file_ktp" value="<?=$data['file_ktp']?>" >
-                </div>                
+                  <input type="file" class="form-control-file" name="ktp" id="file_ktp" >
+                </div>
+                <input type="hidden" name="old_foto" value="<?=$data['foto']?>" />              
                 <div class="form-group">
                   <label for="foto">Foto*</label>
-                  <input type="file" class="form-control-file" id="foto" value="<?=$data['foto']?>" >
+                  <input type="file" class="form-control-file" name="foto" id="foto">
                 </div>
                 
                 <input class="btn btn-success" type="submit" name="btn" value="Save" /> 

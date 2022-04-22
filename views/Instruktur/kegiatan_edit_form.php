@@ -79,7 +79,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <div class="card mb-3">
-            <div class="card-header"> <a href="<?=SERVER?>admin/diklat/list"><i class="fas fa-arrow-left"></i> Kembali</a> </div>
+            <div class="card-header"> <a href="<?=SERVER?>instruktur/kegiatan/list"><i class="fas fa-arrow-left"></i> Kembali</a> </div>
             <div class="card-body">
               <?php 
               if(isset($_GET['feedback'])){

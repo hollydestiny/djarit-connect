@@ -171,11 +171,10 @@
                     $('[name="no_npwp"]').val(response[i].no_npwp);
                     $('[name="cv"]').val(response[i].cv);
                     $('[name="alamat"]').val(response[i].alamat);
-                    var dir_file = "<?=SERVER?>assets/img/upload/file/";
-                    document.getElementById("file_ktp").href=dir_file.concat(response[i].file_ktp);
-                    document.getElementById("file_npwp").href=dir_file.concat(response[i].file_npwp);
-                    var dir_foto = "<?=SERVER?>assets/img/upload/foto/";
-                    var gambar = dir_foto.concat(response[i].foto);
+                    var dir = "<?=SERVER?>assets/img/upload/";
+                    document.getElementById("file_ktp").href=dir.concat(response[i].file_ktp);
+                    document.getElementById("file_npwp").href=dir.concat(response[i].file_npwp);
+                    var gambar = dir.concat(response[i].foto);
                     $('#foto_instruktur').attr('src', gambar);
                   }
                 }

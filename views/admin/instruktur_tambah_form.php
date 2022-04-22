@@ -99,7 +99,7 @@
 
                 <div class="form-group">
                   <label for="ktp">File KTP</label>
-                  <input class="form-control-file " type="file" name="file_ktp" />
+                  <input class="form-control-file " type="file" name="ktp" />
                   <div class="invalid-feedback"> </div>
                 </div>
                 

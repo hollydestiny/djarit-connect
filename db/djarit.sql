@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 20, 2022 at 11:16 PM
+-- Generation Time: Apr 22, 2022 at 12:39 AM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -54,17 +54,17 @@ INSERT INTO `tb_diklat` (`id`, `nama`, `jumlah_peserta`, `angkatan`, `status`, `
 CREATE TABLE `tb_instruktur` (
   `id` int(12) NOT NULL,
   `nama` varchar(50) NOT NULL,
-  `email` varchar(20) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `telepon` int(20) NOT NULL,
   `jabatan` varchar(20) NOT NULL,
   `id_diklat` int(12) NOT NULL,
-  `no_ktp` int(50) NOT NULL,
-  `file_ktp` varchar(50) NOT NULL DEFAULT 'ktp.jpg',
-  `no_npwp` int(50) NOT NULL,
-  `file_npwp` varchar(50) NOT NULL DEFAULT 'npwp,jpg',
+  `no_ktp` varchar(30) NOT NULL,
+  `file_ktp` varchar(120) NOT NULL DEFAULT 'ktp.jpg',
+  `no_npwp` varchar(30) NOT NULL,
+  `file_npwp` varchar(120) NOT NULL DEFAULT 'npwp.jpg',
   `cv` text NOT NULL,
   `alamat` text NOT NULL,
-  `foto` varchar(50) NOT NULL DEFAULT 'foto.jpg'
+  `foto` varchar(120) NOT NULL DEFAULT 'foto.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -72,9 +72,10 @@ CREATE TABLE `tb_instruktur` (
 --
 
 INSERT INTO `tb_instruktur` (`id`, `nama`, `email`, `telepon`, `jabatan`, `id_diklat`, `no_ktp`, `file_ktp`, `no_npwp`, `file_npwp`, `cv`, `alamat`, `foto`) VALUES
-(2, 'yolooo', 'yoolo@', 123456, 'payabo', 2, 0, 'ktp.jpg', 0, 'npwp,jpg', '-', '-', 'foto.jpg'),
-(3, 'hoooloo', 'holo@holoo', 854545431, 'assistent', 7, 0, 'ktp.jpg', 0, 'npwp,jpg', '-', '-', 'foto.jpg'),
-(4, 'flash', 'flash@g', 1234578, '-', 2, 0, 'ktp.jpg', 0, 'npwp,jpg', '-', '-', 'foto.jpg');
+(2, 'yolooo', 'yoolo@gmail.com', 123456, 'payabo', 2, '0', 'ktp.jpg', '0', 'npwp.jpg', '-', '-s', ''),
+(3, 'hoooloo', 'holo@holoo', 854545431, 'assistent', 7, '0', 'animation.png', '0', 'pngegg.png', '-', '-sss', 'e90b8821ba77f4001cac3e30f698bafb.jpg'),
+(4, 'flash', 'flash@gmail.com', 1234578, '-', 2, '0', 'ktp.jpg', '0', 'npwp.jpg', '', '123456789', 'foto.jpg'),
+(23, 'Taqwa Al Mutawakkil', 'bocahgokil50@ymail.com', 823456789, 'instruktur', 7, '737112050997002', 'ktp.jpg', '737112050997002', 'crossword-puzzles-typography-book-cover-Graphics-18244077-1.jpg', 'mycv', 'Nirannuang, Kec. Bontomarannu, Kab. Gowa, Sulawesi Selatan', 'monkey-ape-coder-logo-mascot-programmer-vector-28641464.jpg');
 
 -- --------------------------------------------------------
 
@@ -98,8 +99,11 @@ INSERT INTO `tb_kegiatan` (`id`, `diklat`, `kegiatan`, `tanggal`, `id_instruktur
 (15, 'diklat 1', 'kegiatan 1', '2022-04-20', 2),
 (16, 'diklat 1', 'kegiatann 2\r\n', '2022-04-20', 2),
 (17, 'diklat 1', 'kegiatan 3', '2022-04-20', 2),
-(18, 'diklat 1', 'ketiatan41\r\n', '2022-04-20', 2),
-(19, 'diklat2', 'kegiatan 1 dari handokko', '2022-04-20', 3);
+(18, 'diklat 1', 'Kegiatan insturktur edit, diedit lagi', '2022-04-20', 2),
+(19, 'diklat2', 'kegiatan 1 dari handokko', '2022-04-20', 3),
+(21, 'diklat 1', 'Kegiatan Insturkur', '2022-04-21', 2),
+(22, 'diklat 1', 'Kegiatan Iinsturktur hari ini, kemudian di edit', '2022-04-21', 2),
+(23, 'diklat2', 'keggiatan karcaqs di edit', '2022-04-21', 23);
 
 -- --------------------------------------------------------
 
@@ -169,19 +173,19 @@ ALTER TABLE `tb_diklat`
 -- AUTO_INCREMENT for table `tb_instruktur`
 --
 ALTER TABLE `tb_instruktur`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tb_kegiatan`
 --
 ALTER TABLE `tb_kegiatan`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
