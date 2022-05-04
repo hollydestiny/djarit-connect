@@ -1,2 +1,0 @@
-~ubah $project_locataion pada file index.php sesuai lokasi server
-~ubah konstata SERVER pada file config/config.php sesuai lokasi server
