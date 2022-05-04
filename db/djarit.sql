@@ -2,10 +2,10 @@
 -- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 20, 2022 at 05:49 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.28
+-- Host: localhost:3306
+-- Generation Time: Apr 22, 2022 at 12:39 AM
+-- Server version: 5.7.33
+-- PHP Version: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,14 +28,22 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `tb_diklat` (
-  `id_diklat` int(11) NOT NULL,
-  `nama` varchar(30) NOT NULL,
-  `jumlah_peserta` int(3) NOT NULL,
-  `angkatan` int(3) NOT NULL,
-  `status` int(3) NOT NULL,
-  `mulai` date NOT NULL,
-  `selesai` date NOT NULL
+  `id` int(12) NOT NULL,
+  `nama` varchar(64) NOT NULL,
+  `jumlah_peserta` int(5) NOT NULL,
+  `angkatan` int(5) NOT NULL,
+  `status` varchar(5) NOT NULL,
+  `tgl_mulai` date NOT NULL,
+  `tgl_selesai` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_diklat`
+--
+
+INSERT INTO `tb_diklat` (`id`, `nama`, `jumlah_peserta`, `angkatan`, `status`, `tgl_mulai`, `tgl_selesai`) VALUES
+(2, 'diklat 1', 20, 2, '1', '2022-04-01', '2022-04-01'),
+(7, 'diklat2', 0, 1, '0', '2022-04-01', '2022-04-01');
 
 -- --------------------------------------------------------
 
@@ -44,21 +52,30 @@ CREATE TABLE `tb_diklat` (
 --
 
 CREATE TABLE `tb_instruktur` (
-  `id_instruktur` int(11) NOT NULL,
-  `nama` varchar(30) NOT NULL,
-  `email` varchar(30) NOT NULL,
+  `id` int(12) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `telepon` int(20) NOT NULL,
-  `jabatan` int(2) NOT NULL,
-  `materi 1` int(20) NOT NULL,
-  `materi 2` varchar(30) NOT NULL,
-  `no_ktp` varchar(20) NOT NULL,
-  `file_ktp` varchar(50) NOT NULL,
-  `no_npwp` int(50) NOT NULL,
-  `file_npwp` varchar(50) NOT NULL,
+  `jabatan` varchar(20) NOT NULL,
+  `id_diklat` int(12) NOT NULL,
+  `no_ktp` varchar(30) NOT NULL,
+  `file_ktp` varchar(120) NOT NULL DEFAULT 'ktp.jpg',
+  `no_npwp` varchar(30) NOT NULL,
+  `file_npwp` varchar(120) NOT NULL DEFAULT 'npwp.jpg',
   `cv` text NOT NULL,
   `alamat` text NOT NULL,
-  `foto` varchar(255) NOT NULL
+  `foto` varchar(120) NOT NULL DEFAULT 'foto.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_instruktur`
+--
+
+INSERT INTO `tb_instruktur` (`id`, `nama`, `email`, `telepon`, `jabatan`, `id_diklat`, `no_ktp`, `file_ktp`, `no_npwp`, `file_npwp`, `cv`, `alamat`, `foto`) VALUES
+(2, 'yolooo', 'yoolo@gmail.com', 123456, 'payabo', 2, '0', 'ktp.jpg', '0', 'npwp.jpg', '-', '-s', ''),
+(3, 'hoooloo', 'holo@holoo', 854545431, 'assistent', 7, '0', 'animation.png', '0', 'pngegg.png', '-', '-sss', 'e90b8821ba77f4001cac3e30f698bafb.jpg'),
+(4, 'flash', 'flash@gmail.com', 1234578, '-', 2, '0', 'ktp.jpg', '0', 'npwp.jpg', '', '123456789', 'foto.jpg'),
+(23, 'Taqwa Al Mutawakkil', 'bocahgokil50@ymail.com', 823456789, 'instruktur', 7, '737112050997002', 'ktp.jpg', '737112050997002', 'crossword-puzzles-typography-book-cover-Graphics-18244077-1.jpg', 'mycv', 'Nirannuang, Kec. Bontomarannu, Kab. Gowa, Sulawesi Selatan', 'monkey-ape-coder-logo-mascot-programmer-vector-28641464.jpg');
 
 -- --------------------------------------------------------
 
@@ -67,11 +84,26 @@ CREATE TABLE `tb_instruktur` (
 --
 
 CREATE TABLE `tb_kegiatan` (
-  `id_kegiatan` int(11) NOT NULL,
-  `diklat` varchar(50) NOT NULL,
+  `id` int(12) NOT NULL,
+  `diklat` varchar(64) NOT NULL,
   `kegiatan` text NOT NULL,
-  `tanggal` date NOT NULL
+  `tanggal` date NOT NULL,
+  `id_instruktur` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_kegiatan`
+--
+
+INSERT INTO `tb_kegiatan` (`id`, `diklat`, `kegiatan`, `tanggal`, `id_instruktur`) VALUES
+(15, 'diklat 1', 'kegiatan 1', '2022-04-20', 2),
+(16, 'diklat 1', 'kegiatann 2\r\n', '2022-04-20', 2),
+(17, 'diklat 1', 'kegiatan 3', '2022-04-20', 2),
+(18, 'diklat 1', 'Kegiatan insturktur edit, diedit lagi', '2022-04-20', 2),
+(19, 'diklat2', 'kegiatan 1 dari handokko', '2022-04-20', 3),
+(21, 'diklat 1', 'Kegiatan Insturkur', '2022-04-21', 2),
+(22, 'diklat 1', 'Kegiatan Iinsturktur hari ini, kemudian di edit', '2022-04-21', 2),
+(23, 'diklat2', 'keggiatan karcaqs di edit', '2022-04-21', 23);
 
 -- --------------------------------------------------------
 
@@ -80,12 +112,21 @@ CREATE TABLE `tb_kegiatan` (
 --
 
 CREATE TABLE `tb_user` (
-  `id_user` int(11) NOT NULL,
-  `nama` varchar(30) NOT NULL,
+  `id` int(12) NOT NULL,
+  `nama` varchar(50) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `level` varchar(30) NOT NULL
+  `password` varchar(30) NOT NULL,
+  `level` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_user`
+--
+
+INSERT INTO `tb_user` (`id`, `nama`, `username`, `password`, `level`) VALUES
+(1, 'admin', 'admin', 'admin', 'admin'),
+(2, 'instruktur', 'instruktur', 'instruktur', 'instruktur'),
+(3, 'hoooloo', 'handoko', '123456', 'assistant');
 
 --
 -- Indexes for dumped tables
@@ -95,25 +136,28 @@ CREATE TABLE `tb_user` (
 -- Indexes for table `tb_diklat`
 --
 ALTER TABLE `tb_diklat`
-  ADD PRIMARY KEY (`id_diklat`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tb_instruktur`
 --
 ALTER TABLE `tb_instruktur`
-  ADD PRIMARY KEY (`id_instruktur`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_diklat` (`id_diklat`);
 
 --
 -- Indexes for table `tb_kegiatan`
 --
 ALTER TABLE `tb_kegiatan`
-  ADD PRIMARY KEY (`id_kegiatan`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_instruktur` (`id_instruktur`);
 
 --
 -- Indexes for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -123,25 +167,41 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_diklat`
 --
 ALTER TABLE `tb_diklat`
-  MODIFY `id_diklat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tb_instruktur`
 --
 ALTER TABLE `tb_instruktur`
-  MODIFY `id_instruktur` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tb_kegiatan`
 --
 ALTER TABLE `tb_kegiatan`
-  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tb_instruktur`
+--
+ALTER TABLE `tb_instruktur`
+  ADD CONSTRAINT `tb_instruktur_ibfk_1` FOREIGN KEY (`id_diklat`) REFERENCES `tb_diklat` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tb_kegiatan`
+--
+ALTER TABLE `tb_kegiatan`
+  ADD CONSTRAINT `tb_kegiatan_ibfk_1` FOREIGN KEY (`id_instruktur`) REFERENCES `tb_instruktur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
